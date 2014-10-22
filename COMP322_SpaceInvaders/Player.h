@@ -17,11 +17,9 @@ using std::string ;
 class Player : public AnimateEntity {
 
 public:
-	Player(int h = 1, string i = "player") : AnimateEntity(h,i) {} ;
+	Player(int h = 1, string i = "player") : AnimateEntity(h,i,0) {} ;
 	void cycle(World&) ;
-
-private:
-	void move(World&) ;
+	Message react(World&, Message) ;
 
 };
 

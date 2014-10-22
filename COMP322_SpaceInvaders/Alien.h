@@ -17,7 +17,7 @@ using std::string ;
 class Alien : public AnimateEntity {
 
 public:
-	Alien(int h = 1, string i = "alien") : AnimateEntity(h,i) {} ;
+	Alien(int h = 1, string i = "alien") : AnimateEntity(h,i,0) {} ;
 	void cycle(World&) ;
 
 private:

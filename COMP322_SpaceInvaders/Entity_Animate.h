@@ -17,12 +17,12 @@ using std::string ;
 class AnimateEntity : public Entity {
 
 public:
-	AnimateEntity(int h = DEFAULT_ENTITY_HEALTH, string i = DEFAULT_ENTITY_IDENT) : Entity(h,i), motion(none) {} ;
+	AnimateEntity(int h = DEFAULT_ENTITY_HEALTH, string i = DEFAULT_ENTITY_IDENT, int d = 0) : Entity(h,i,d), motion(none) {} ;
 
 private:
 	enum direction { up, left, down, right, none } ;
 	direction motion ;
-	virtual void move(World&) = 0; // move in direction, if space is empty and inbounds()
+	virtual void move(World&) ; // move in direction, if space is empty and inbounds()
 
 };
 

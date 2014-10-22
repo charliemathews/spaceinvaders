@@ -13,20 +13,17 @@
 
 #include "Player.h"
 
-void setup(World* world)
-{
-	world = new World(15,20) ;
-	
-	world->add(new Player(), Coord(0,world->getSize('y')-1)) ;
-
-	world->draw() ;
-}
-
 int main() 
 {
 
-	World* world ;
-	setup(world) ;
+	World* world = new World(15,20) ;
+	
+	world->add(new Player(), Coord(0,world->getSize('y')-1)) ; 
+	// x and y are flipped atm
+	// fix this by rethinking the world calls
+	// this happened because doodlebug (which this is modeled after) didn't have x and y, just size
+
+	world->draw() ;
 
 	system("pause");
 
