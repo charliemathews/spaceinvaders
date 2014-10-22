@@ -6,17 +6,11 @@
 	Description: 
 */
 
-#include <string>
-using std::string ;
+#include "Barrier.h"
 
-#include "Projectile.h"
+void Barrier::cycle(World& world) {}
 
-void Projectile::cycle(World& world)
-{
-
-}
-
-Message Projectile::react(World& world, Message m)
+Message Barrier::react(World& world, Message m)
 {
 	takeHit(world, m.damage) ;
 	return Message() ;

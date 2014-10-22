@@ -1,7 +1,7 @@
 /*
 	Project Author(s): Charlie Mathews, Stuart Bowman, Colin Hooper, Barry McFadden
 	File Author: Charlie Mathews
-	Date: 10/20/2013
+	Date: 10/22/2013
 	Course: COMP322
 	Description: See *.cpp
 */
@@ -19,9 +19,7 @@ class Alien : public AnimateEntity {
 public:
 	Alien(int h = 1, string i = "alien") : AnimateEntity(h,i,0) {} ;
 	void cycle(World&) ;
-
-private:
-	void move(World&) ;
+	Message react(World&, Message) ;
 
 };
 

@@ -34,18 +34,18 @@ void World::createWorld()
 
 void World::draw() // DEBUG FUNCTION
 {
-	for(int i = 0; i < worldSize_X; ++i)
+	for(int j = 0; j < worldSize_Y; ++j)
 	{
-		for(int j = 0; j < worldSize_Y; ++j)
+		for(int i = 0; i < worldSize_X; ++i)
 		{
-			string ident = (grid[i][j]!=nullptr) ? grid[i][j]->getIdent() : "_" ;
+			string ident = (grid[i][j]!=nullptr) ? grid[i][j]->getIdent() : "." ;
 			cout << ident << " " ;
 		}
 		cout << endl ;
 	}
 }
 
-int World::getSize(char axis) { return (axis == 'x') ? worldSize_X : worldSize_Y ; }
+int World::size(char axis) { return (axis == 'x') ? worldSize_X : worldSize_Y ; }
 
 bool World::inBounds(Coord loc)
 {

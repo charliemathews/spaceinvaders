@@ -6,18 +6,18 @@
 	Description: See *.cpp
 */
 
-#ifndef H_Projectile
-#define H_Projectile
+#ifndef H_Barrier
+#define H_Barrier
 
 #include <string>
 using std::string ;
 
-#include "Entity_Animate.h"
+#include "Entity_Inanimate.h"
 
-class Projectile : public AnimateEntity {
+class Barrier : public InanimateEntity {
 
 public:
-	Projectile(direction m, int h = 1, string i = "projectile", int d = 1) : AnimateEntity(h,i,d,m) {} ;
+	Barrier(int h = 1, string i = "barrier") : InanimateEntity(h,i) {} ;
 	void cycle(World&) ;
 	Message react(World&, Message) ;
 

@@ -1,7 +1,7 @@
 /*
 	Project Author(s): Charlie Mathews, Stuart Bowman, Colin Hooper, Barry McFadden
 	File Author: Charlie Mathews
-	Date: 10/20/2013
+	Date: 10/21/2013
 	Course: COMP322
 	Description: See *.cpp
 */
@@ -17,13 +17,11 @@ using std::string ;
 class AnimateEntity : public Entity {
 
 public:
-	AnimateEntity(int h = DEFAULT_ENTITY_HEALTH, string i = DEFAULT_ENTITY_IDENT, int d = 0) : Entity(h,i,d), motion(none) {} ;
+	AnimateEntity(int h = DEFAULT_ENTITY_HEALTH, string i = DEFAULT_ENTITY_IDENT, int d = 0, direction m = none) : Entity(h,i,d), motion(m) {} ;
 
-private:
-	enum direction { up, left, down, right, none } ;
-	direction motion ;
+protected:
 	virtual void move(World&) ; // move in direction, if space is empty and inbounds()
-
+	direction motion ;
 };
 
 #endif

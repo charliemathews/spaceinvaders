@@ -20,7 +20,7 @@ public:
 
 	void draw() ; // DEBUG FUNCTION
 
-	int getSize(char) ;
+	int size(char) ;
 	bool inBounds(Coord) ;
 	Entity* getEntity(Coord) ;
 	Coord* getCoord(Entity*) ;

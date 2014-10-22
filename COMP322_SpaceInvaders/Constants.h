@@ -8,3 +8,7 @@
 
 #define DEFAULT_ENTITY_IDENT "undefined"
 #define DEFAULT_ENTITY_HEALTH 1
+
+#define DEFAULT_GRID_IDENT "inactive"
+
+static enum direction { up, left, down, right, none } ;

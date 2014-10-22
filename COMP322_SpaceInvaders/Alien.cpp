@@ -16,7 +16,8 @@ void Alien::cycle(World& world)
 
 }
 
-void Alien::move(World& world)
+Message Alien::react(World& world, Message m)
 {
-
+	takeHit(world, m.damage) ;
+	return Message() ;
 }
