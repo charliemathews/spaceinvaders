@@ -2,9 +2,9 @@
 #include "Settings.h"
 #include "KeyInput.h"
 
-GridGame::GridGame(int w, int h) : gridWidth(w), gridHeight(h)
+GridGame::GridGame(string config, int w, int h) : gridWidth(w), gridHeight(h)
 {
-	settings = new Settings("settings.config") ;
+	settings = new Settings(config) ; //"settings.config"
 	input = KeyInput(settings->getKeyBindings()) ;
 
 	setWindowSize(w*4/.95, h*3/1.3) ;

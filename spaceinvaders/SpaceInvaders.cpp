@@ -4,13 +4,9 @@
 
 #include "SpaceInvaders.h"
 
-SpaceInvaders::SpaceInvaders(){
-	
-}
+SpaceInvaders::SpaceInvaders(){}
 
-SpaceInvaders::~SpaceInvaders(){
-	
-}
+SpaceInvaders::~SpaceInvaders(){}
 
 void SpaceInvaders::runGame(){
 	for(;;){
@@ -22,7 +18,7 @@ void SpaceInvaders::runGame(){
 
 void SpaceInvaders::update()
 {
-
+	// TODO
 }
 
 void SpaceInvaders::draw()
