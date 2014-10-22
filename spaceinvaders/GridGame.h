@@ -17,7 +17,7 @@ using std::vector;
 
 class GridGame{
 public:
-	GridGame(string config, int w = DEFAULT_GRID_WIDTH, int h = DEFAULT_GRID_HEIGHT) ;
+	GridGame(string config = "settings.config", int w = DEFAULT_GRID_WIDTH, int h = DEFAULT_GRID_HEIGHT) ;
 	~GridGame();
 	virtual void runGame() = 0 ; //starts the game loop and additional setup
 
