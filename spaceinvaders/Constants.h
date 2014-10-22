@@ -15,6 +15,7 @@
 #define DEFAULT_GRID_IDENT "inactive"
 #define DEFAULT_GRID_HEIGHT 20
 #define DEFAULT_GRID_WIDTH 15
+#define TARGET_FPS 20
 
 static enum direction { up, left, down, right, none } ;
 
