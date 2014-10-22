@@ -1,3 +1,10 @@
+/*
+
+*/
+
+#ifndef H_Settings
+#define H_Settings
+
 #include <string>
 #include <vector>
 #include <iostream>
@@ -9,6 +16,7 @@ using std::vector;
 
 class Settings
 {
+
 public:
 	Settings();
 	Settings(string f) : configFile(f) {} ;
@@ -33,3 +41,5 @@ private:
 	string configFile ;
 
 };
+
+#endif

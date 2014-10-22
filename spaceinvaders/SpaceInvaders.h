@@ -1,14 +1,19 @@
-#ifndef SPACEINVADERS_H
-#define SPACEINVADERS_H
+#ifndef H_SpaceInvaders
+#define H_SpaceInvaders
 
-class SpaceInvaders: public GridGame {
-	public:
-		SpaceInvaders();
-		~SpaceInvaders();
-	private:
-		void draw();
-		void updateScore(float s);
-		void update();
+#include "GridGame.h"
+
+class SpaceInvaders: public GridGame
+{
+public:
+	SpaceInvaders();
+	~SpaceInvaders();
+	void runGame();
+
+private:
+	void draw();
+	void updateScore(float s);
+	void update();
 };
 
 #endif

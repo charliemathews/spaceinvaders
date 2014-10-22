@@ -1,17 +1,25 @@
+/*
+
+*/
+
+#include <Windows.h>
+using namespace std ;
+
 #include "KeyInput.h"
 
 KeyInput::KeyInput(vector<char> keys){
-	keybindings = k;
+	keybindings = keys;
 }
 
 KeyInput::~KeyInput(){}
 
-KeyInput::recieveinput(){
+void KeyInput::recieveinput(){
 	for (int i = 0;i<keybindings.size();i++){
 		char c = keybindings.at(i);
-		keystate.at(keybindings.at(i)) = GetAsyncKeyState();
+		keystate.at(keybindings.at(i)) = GetAsyncKeyState(c);
 	}
 }
 
-KeyInput::isKeyDown(char k){
-	return keystate.at(k);//returns the bool value of}
+bool KeyInput::isKeyDown(char k){
+	return keystate.at(k);//returns the bool value of
+}

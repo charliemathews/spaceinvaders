@@ -6,32 +6,36 @@
 #include <string>
 #include <vector>
 #include <Windows.h>
-#include "constants.h"
 using std::cout;
 using std::endl;
 using std::map;
 using std::string;
 using std::vector;
 
-#include "keyinput.h"
+#include "Constants.h"
+#include "KeyInput.h"
 
 class GridGame{
 public:
 	GridGame();
 	~GridGame();
-	settings mysettings;
-	keyinput keyboardinput;
-	void rungame();//starts the game loop and additional setup
+	virtual void runGame() = 0 ; //starts the game loop and additional setup
+
 protected:
+	Settings settings;
+	KeyInput input;
+	map<string,string> graphics;
+
 	int gametime; // TBD
+
 	virtual void update();
 	virtual void updateScore(int s);
-	virtual void draw();
+	virtual void draw() = 0 ;
+
 	void setWindowSize(int,int);
 
 private:
 	vector<vector<string>> temp;
-	map<string, string> convert;
 };
 
 #endif

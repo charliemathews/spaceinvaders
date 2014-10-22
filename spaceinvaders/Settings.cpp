@@ -2,9 +2,6 @@
 
 */
 
-#ifndef SPACEINVADERS_H
-#define SPACEINVADERS_H
-
 #include <sstream>
 using std::stringstream ;
 #include <vector>
@@ -127,5 +124,3 @@ vector<char> Settings::getKeyBindings()
 	}
 	return output ;
 }
-
-#endif
