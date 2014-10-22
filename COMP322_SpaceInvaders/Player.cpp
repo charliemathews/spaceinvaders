@@ -14,6 +14,7 @@ using std::string ;
 void Player::cycle(World& world)
 {
 	// call move() if timing is right
+	// aka every animated entity should only move if it's their turn
 }
 
 Message Player::react(World& world, Message m)

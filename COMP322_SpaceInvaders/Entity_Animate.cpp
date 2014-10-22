@@ -27,7 +27,7 @@ void AnimateEntity::move(World& world)
 		if(world.inBounds(destination))
 		{
 			Entity* destination_owner = world.getEntity(destination) ;
-			if(destination_owner != nullptr) // if entity in spot, call entity::react(identifier) ;
+			if(destination_owner != nullptr) // if entity in spot, call entity::react() ;
 			{
 				Message result = destination_owner->react(world, Message(identifier, damageDealt)) ;	
 				if(result.damage > 0) takeHit(world,result.damage) ;
@@ -37,10 +37,5 @@ void AnimateEntity::move(World& world)
 			if(world.getEntity(destination) == nullptr) world.erase(this) ;
 			else world.move(this,destination) ;
 		}
-
-	// for now entity::react() can return an int of damage, 
-	// but in the future, it should return a struct response which
-	// holds any message it wants to send back to the impacting object
 	}
-
 }
