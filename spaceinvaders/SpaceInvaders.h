@@ -1,7 +1,7 @@
 #ifndef SPACEINVADERS_H
 #define SPACEINVADERS_H
 
-class SpaceInvaders: public GridGame{
+class SpaceInvaders: public GridGame {
 	public:
 		SpaceInvaders();
 		~SpaceInvaders();

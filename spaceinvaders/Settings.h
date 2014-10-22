@@ -7,25 +7,29 @@ using std::ifstream;
 using std::ofstream;
 using std::vector;
 
-struct Settings
+class Settings
 {
+public:
 	Settings();
+	Settings(string f) : configFile(f) {} ;
 
-	void changeDifficulty() {};
-	string addHighScore() {};
-	void saveSettings() {};
-	void saveHighScore() {};
+	void changeDifficulty() ;
+	string addHighScore() ;
+	void saveSettings() ;
+	void saveHighScore() ;
 
-	struct Trio //for holding data in a trio
+	vector<char> getKeyBindings() ;
+
+private:
+	struct Trio // one setting is stored in a Trio
 	{
 		string type;
 		string name;
 		string value;
 	};
-	vector<Trio> data;
-
-	//input file
+	vector<Trio> settings_map ;
 	ifstream fin;
 	ofstream fout;
+	string configFile ;
 
 };

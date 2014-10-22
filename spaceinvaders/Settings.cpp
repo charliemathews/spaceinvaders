@@ -1,8 +1,20 @@
-#include "settings.h"
+/*
+
+*/
+
+#ifndef SPACEINVADERS_H
+#define SPACEINVADERS_H
+
+#include <sstream>
+using std::stringstream ;
+#include <vector>
+using std::vector ;
+
+#include "Settings.h"
 
 Settings::Settings()
 {
-	fin.open("gamename.config");
+	fin.open(configFile);
 
 	char test;
 	bool done = false;
@@ -95,6 +107,25 @@ Settings::Settings()
 		input.type = left;
 		input.name = middle;
 		input.value = right;
-		data.push_back(input);
+		settings_map.push_back(input);
 	}
 }
+
+vector<char> Settings::getKeyBindings()
+{
+	vector<char> output ;
+	for(auto &s : settings_map)
+	{
+		if(s.type == "keyBinding") 
+		{
+			stringstream ss ;
+			ss << s.value ;
+			char c ;
+			ss.get(c) ;
+			output.push_back(c) ;
+		}
+	}
+	return output ;
+}
+
+#endif
