@@ -14,7 +14,7 @@ using std::string ;
 
 #include "Entity.h"
 
-class InanimateEntity : Entity {
+class InanimateEntity : public Entity {
 
 public:
 	InanimateEntity(int h = DEFAULT_ENTITY_HEALTH, string i = DEFAULT_ENTITY_IDENT) : Entity(h,i) {} ;

@@ -4,6 +4,7 @@
 	Description: Driver
 */
 
+
 #include "World.h"
 #include "Entity.h"
 
@@ -12,10 +13,18 @@
 
 #include "Player.h"
 
-int main() {
+void setup(World* world)
+{
+	world = new World(15,20) ;
+	
+	world->add(new Player(), Coord(0,world->getSize('y')-1)) ;
+}
 
-	World* world = new World() ;
-	world->draw() ;
+int main() 
+{
+
+	World* world ;
+	setup(world) ;
 
 	Player p1() ;
 

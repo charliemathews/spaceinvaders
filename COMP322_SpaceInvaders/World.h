@@ -31,8 +31,8 @@ public:
 	void erase(Entity*) ;
 
 	// IDEAS
-		// cycleAll() // loop through world and call Entity::cycle()
-		// Draw function can call getSize(x and y) then loop through world calling World::getIdent(Coord(i,j)) and output accordingly
+		// void cycleAll() ; // do this inside class game instead
+		// Draw function can call getSize(x and y) then loop through world calling World::getEntity(Coord(i,j))->getIdent() and output accordingly
 
 	//int getPlayerHealth() ;
 

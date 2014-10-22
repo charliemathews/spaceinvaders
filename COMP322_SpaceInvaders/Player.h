@@ -14,7 +14,7 @@ using std::string ;
 
 #include "Entity_Animate.h"
 
-class Player : AnimateEntity {
+class Player : public AnimateEntity {
 
 public:
 	Player(int h = 1, string i = "player") : AnimateEntity(h,i) {} ;
