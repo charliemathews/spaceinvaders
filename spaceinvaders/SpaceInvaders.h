@@ -17,6 +17,10 @@ public:
 private:
 	void draw();
 	void update();
+
+	int enemyMoveCount ;
+	direction lastDir ;
+	void setEnemiesDir(direction) ;
 };
 
 #endif

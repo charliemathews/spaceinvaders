@@ -13,8 +13,15 @@ using std::string ;
 
 void Player::cycle(World& w, Settings& s, KeyInput& i, int t)
 {
-	// call move() if timing is right
-	// aka every animated entity should only move if it's their turn
+	// TODO: use settings to get keybindings
+
+	if(true) // check if time is right for move
+	{
+		if(i.isKeyDown('a')) motion = left ;
+		else if(i.isKeyDown('d')) motion = right ;
+		move(w) ;
+		if(i.isKeyDown(' ')) true ; // fire lazor
+	}
 }
 
 Message Player::react(World& world, Message m)

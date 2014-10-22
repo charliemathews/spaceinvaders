@@ -39,8 +39,3 @@ void AnimateEntity::move(World& world)
 		}
 	}
 }
-
-void AnimateEntity::setDirection(direction m)
-{
-	motion = m ;
-}

@@ -18,7 +18,6 @@ class AnimateEntity : public Entity {
 
 public:
 	AnimateEntity(int h = DEFAULT_ENTITY_HEALTH, string i = DEFAULT_ENTITY_IDENT, int d = 0, direction m = none) : Entity(h,i,d), motion(m) {} ;
-	void setDirection(direction) ;
 
 protected:
 	virtual void move(World&) ; // move in direction, if space is empty and inbounds()

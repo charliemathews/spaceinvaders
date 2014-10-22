@@ -13,7 +13,10 @@ using std::string ;
 
 void Projectile::cycle(World& w, Settings& s, KeyInput& i, int t)
 {
-
+	if(true) // check if time is right for move
+	{
+		move(w) ;
+	}
 }
 
 Message Projectile::react(World& world, Message m)
