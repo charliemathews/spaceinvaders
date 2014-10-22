@@ -14,32 +14,32 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Header Files\Entities">
-      <UniqueIdentifier>{152a7136-e749-4bf7-8cc3-2aa3d220ced3}</UniqueIdentifier>
+      <UniqueIdentifier>{aaba3a25-9e47-49f6-b2ba-c98d2ea9dd40}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Entities">
-      <UniqueIdentifier>{8ee08a61-26c4-48c8-b65c-da1f3ae49904}</UniqueIdentifier>
+      <UniqueIdentifier>{f233565f-9ca0-4ba6-9123-26ef7d803c46}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="World.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity_Inanimate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Entity_Animate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Alien.h">
-      <Filter>Header Files\Entities</Filter>
+    <ClInclude Include="Entity_Inanimate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Projectile.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Alien.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Barrier.h">
@@ -48,36 +48,36 @@
     <ClInclude Include="Constants.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="EntityMessage.h">
+    <ClInclude Include="Coordinate.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="Coordinate.h">
+    <ClInclude Include="EntityMessage.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Entity_Animate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="driver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Projectile.cpp">
+    <ClCompile Include="Barrier.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Alien.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Entity_Animate.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Barrier.cpp">
+    <ClCompile Include="Player.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>
