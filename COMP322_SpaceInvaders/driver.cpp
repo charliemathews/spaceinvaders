@@ -4,15 +4,20 @@
 	Description: Driver
 */
 
-
 #include "World.h"
 #include "Entity.h"
+
+#include "Entity_Inanimate.h"
+#include "Entity_Animate.h"
+
+#include "Player.h"
 
 int main() {
 
 	World* world = new World() ;
+	world->draw() ;
 
-	world->draw() ; // just output the empty world.
+	Player p1() ;
 
 	return 0 ;
 }

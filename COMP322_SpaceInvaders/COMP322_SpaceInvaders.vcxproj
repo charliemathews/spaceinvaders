@@ -76,8 +76,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Alien.h" />
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="Entity_Animate.h" />
     <ClInclude Include="Coordinate.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Entity_Inanimate.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
