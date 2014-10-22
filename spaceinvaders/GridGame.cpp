@@ -2,32 +2,25 @@
 #include "Settings.h"
 #include "KeyInput.h"
 
-GridGame::GridGame(){
-	settings = Settings("settings.config"); //load the settings from the settings file
-	input = KeyInput(settings.getKeyBindings());
-	//setup additional level stuff here
+GridGame::GridGame(int w, int h) : gridWidth(w), gridHeight(h)
+{
+	settings = new Settings("settings.config") ;
+	input = KeyInput(settings->getKeyBindings()) ;
 
-	setWindowSize(DEFAULT_GRID_WIDTH*4/.95, DEFAULT_GRID_HEIGHT*3/1.3); // uses setWindowSize() to set the window, any numbers can be used
-	
-	//temp.resize(DEFAULT_GRID_HEIGHT, vector<string>(DEFAULT_GRID_WIDTH, " "));
-	//for(int i=0; i<DEFAULT_GRID_HEIGHT; i++)		// Use this loop to put the grid from world into the displayS vector
-	//	for(int j=0; j<DEFAULT_GRID_WIDTH; j++)
-	//		temp[i][j]="Alien 1"; 
-	//temp[2][3]="Inactive";
+	setWindowSize(w*4/.95, h*3/1.3) ;
 
-	graphics["Alien 1"] = "x";
-	graphics["Alien 2"] = "~";
-	graphics["Projectile"] = "*";
-	graphics["Player"] = "^";
-	graphics["Barrier full"] = "=";
-	graphics["Barrier half"] = "_";
-	graphics[DEFAULT_GRID_IDENT] = " ";
+	graphics["Alien 1"]				= "x";
+	graphics["Alien 2"]				= "~";
+	graphics["Projectile"]			= "*";
+	graphics["Player"]				= "^";
+	graphics["Barrier full"]		= "=";
+	graphics["Barrier half"]		= "_";
+	graphics[DEFAULT_GRID_IDENT]	= " ";
 }
 
-GridGame::~GridGame(){
-	//setup settings here
-	//input = input(settings.getKeymap());//let keyinput know what keys to check for
-}
+GridGame::~GridGame(){}
+
+void GridGame::updateScore(int s) { score += s ; }
 
 void GridGame::setWindowSize(int x, int y) { // function to set the window size
 	if(x>240) x=240; // prevents crashing if window size is too large

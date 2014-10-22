@@ -7,6 +7,7 @@ using namespace std ;
 
 #include "KeyInput.h"
 
+KeyInput::KeyInput() {} ;
 KeyInput::KeyInput(vector<char> keys){
 	keybindings = keys;
 }

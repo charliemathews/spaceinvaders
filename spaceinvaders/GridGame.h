@@ -17,22 +17,23 @@ using std::vector;
 
 class GridGame{
 public:
-	GridGame();
+	GridGame(int w = DEFAULT_GRID_WIDTH, int h = DEFAULT_GRID_HEIGHT) ;
 	~GridGame();
 	virtual void runGame() = 0 ; //starts the game loop and additional setup
 
 protected:
-	Settings settings;
-	KeyInput input;
-	map<string,string> graphics;
-
-	int gametime; // TBD
-
-	virtual void update();
-	virtual void updateScore(int s);
 	virtual void draw() = 0 ;
+	virtual void update() = 0 ;
+	virtual void updateScore(int);
 
 	void setWindowSize(int,int);
+
+	int gridWidth, gridHeight ;
+	Settings* settings;
+	KeyInput input;
+	map<string,string> graphics;
+	int score ;
+	int gametime; // TBD
 
 private:
 	vector<vector<string>> temp;
