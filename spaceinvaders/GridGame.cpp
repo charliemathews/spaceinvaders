@@ -8,14 +8,6 @@ GridGame::GridGame(string config, int w, int h) : gridWidth(w), gridHeight(h)
 	input = KeyInput(settings->getKeyBindings()) ;
 
 	setWindowSize(w*4/.95, h*3/1.3) ;
-
-	graphics["Alien 1"]				= "x";
-	graphics["Alien 2"]				= "~";
-	graphics["Projectile"]			= "*";
-	graphics["Player"]				= "^";
-	graphics["Barrier full"]		= "=";
-	graphics["Barrier half"]		= "_";
-	graphics[DEFAULT_GRID_IDENT]	= " ";
 }
 
 GridGame::~GridGame(){}

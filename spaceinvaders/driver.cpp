@@ -14,6 +14,8 @@
 	#include "Alien.h"
 	#include "Projectile.h"
 
+#include "SpaceInvaders.h"
+
 int main() 
 {
 
@@ -62,6 +64,9 @@ int main()
 		world->move(thePlayer, newPlayerLoc) ;
 		world->draw() ; system("pause"); system("cls");
 	}
+
+	SpaceInvaders game("settings.config",15,20) ;
+	//game.runGame();
 
 	return 0 ;
 }

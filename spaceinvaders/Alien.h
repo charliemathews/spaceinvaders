@@ -18,7 +18,7 @@ class Alien : public AnimateEntity {
 
 public:
 	Alien(int h = 1, string i = "alien") : AnimateEntity(h,i,0) {} ;
-	void cycle(World&) ;
+	void cycle(World&, Settings&, KeyInput&, int) ;
 	Message react(World&, Message) ;
 
 };

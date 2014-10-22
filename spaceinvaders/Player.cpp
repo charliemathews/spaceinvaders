@@ -11,7 +11,7 @@ using std::string ;
 
 #include "Player.h"
 
-void Player::cycle(World& world)
+void Player::cycle(World& w, Settings& s, KeyInput& i, int t)
 {
 	// call move() if timing is right
 	// aka every animated entity should only move if it's their turn

@@ -14,6 +14,8 @@ using std::vector;
 
 #include "Constants.h"
 #include "KeyInput.h"
+#include "Settings.h"
+#include "World.h"
 
 class GridGame{
 public:
@@ -32,6 +34,7 @@ protected:
 	Settings* settings;
 	KeyInput input;
 	map<string,string> graphics;
+	World world ;
 	int score ;
 	int gametime; // TBD
 

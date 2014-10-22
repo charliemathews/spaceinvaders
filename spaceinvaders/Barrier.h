@@ -18,7 +18,7 @@ class Barrier : public InanimateEntity {
 
 public:
 	Barrier(int h = 1, string i = "barrier") : InanimateEntity(h,i) {} ;
-	void cycle(World&) ;
+	void cycle(World&, Settings&, KeyInput&, int) ;
 	Message react(World&, Message) ;
 
 };

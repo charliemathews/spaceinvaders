@@ -15,6 +15,8 @@ using std::string ;
 #include "Constants.h"
 #include "Coordinate.h"
 #include "EntityMessage.h"
+#include "Settings.h"
+#include "KeyInput.h"
 class World ; // because entity and world include eachother
 
 class Entity {
@@ -24,7 +26,7 @@ public:
 	virtual string getIdent() ;
 	int getHealth() ;
 	void takeHit(World& world, int damage = 1) ;
-	virtual void cycle(World&) = 0 ;
+	virtual void cycle(World&, Settings&, KeyInput&, int) = 0 ;
 	virtual Message react(World&, Message) = 0 ;
 
 private:

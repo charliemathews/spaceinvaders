@@ -11,7 +11,7 @@ using std::string ;
 
 #include "Projectile.h"
 
-void Projectile::cycle(World& world)
+void Projectile::cycle(World& w, Settings& s, KeyInput& i, int t)
 {
 
 }

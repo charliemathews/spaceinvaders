@@ -18,7 +18,7 @@ class Player : public AnimateEntity {
 
 public:
 	Player(int h = 1, string i = "player") : AnimateEntity(h,i,0) {} ;
-	void cycle(World&) ;
+	void cycle(World&, Settings&, KeyInput&, int) ;
 	Message react(World&, Message) ;
 
 };

@@ -7,8 +7,8 @@
 
 #include <map>
 using std::map ;
-
-#include "settings.h"
+#include <vector>
+using std::vector ;
 
 class KeyInput{
 public:

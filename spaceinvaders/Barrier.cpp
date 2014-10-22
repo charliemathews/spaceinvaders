@@ -8,7 +8,7 @@
 
 #include "Barrier.h"
 
-void Barrier::cycle(World& world) {}
+void Barrier::cycle(World&, Settings&, KeyInput&, int) {}
 
 Message Barrier::react(World& world, Message m)
 {

@@ -18,7 +18,7 @@ class Projectile : public AnimateEntity {
 
 public:
 	Projectile(direction m, int h = 1, string i = "projectile", int d = 1) : AnimateEntity(h,i,d,m) {} ;
-	void cycle(World&) ;
+	void cycle(World&, Settings&, KeyInput&, int) ;
 	Message react(World&, Message) ;
 
 };

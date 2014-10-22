@@ -1,18 +1,21 @@
 #ifndef H_SpaceInvaders
 #define H_SpaceInvaders
 
+#include <string>
+using std::string ;
+
 #include "GridGame.h"
+#include "Entity.h"
 
 class SpaceInvaders: public GridGame
 {
 public:
-	SpaceInvaders();
+	SpaceInvaders(string config = "settings.config", int w = DEFAULT_GRID_WIDTH, int h = DEFAULT_GRID_HEIGHT) ;
 	~SpaceInvaders();
 	void runGame();
 
 private:
 	void draw();
-	void updateScore(float s);
 	void update();
 };
 

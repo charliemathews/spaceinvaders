@@ -11,7 +11,7 @@ using std::string ;
 
 #include "Alien.h"
 
-void Alien::cycle(World& world)
+void Alien::cycle(World& w, Settings& s, KeyInput& i, int t)
 {
 
 }
