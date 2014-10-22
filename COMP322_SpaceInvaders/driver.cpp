@@ -18,6 +18,8 @@ void setup(World* world)
 	world = new World(15,20) ;
 	
 	world->add(new Player(), Coord(0,world->getSize('y')-1)) ;
+
+	world->draw() ;
 }
 
 int main() 
@@ -26,7 +28,7 @@ int main()
 	World* world ;
 	setup(world) ;
 
-	Player p1() ;
+	system("pause");
 
 	return 0 ;
 }
