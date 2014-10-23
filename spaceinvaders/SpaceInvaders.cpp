@@ -11,6 +11,8 @@
 
 SpaceInvaders::SpaceInvaders(string config, int w, int h) : GridGame(config,w,h)
 {
+	//score = 0 ;
+
 	graphics["player"] = "^";
 	graphics["alien"] = "V";
 	graphics["projectile"] = "*";
@@ -58,7 +60,7 @@ SpaceInvaders::~SpaceInvaders(){}
 
 void SpaceInvaders::runGame(){
 	for(;;){
-		Sleep(8000/TARGET_FPS);
+		Sleep(3000/TARGET_FPS);
 		input.recieveinput();
 		update();
 		draw();
@@ -92,11 +94,11 @@ void SpaceInvaders::update() // game logic
 
 	// set alien's direction of motion
 	// TODO: eventually dynamically align the enemy movement to the grid size. For now, assume default.
-	if(enemyMoveCount == 4)
+	if(enemyMoveCount == 6)
 	{
 		setEnemiesDir(down) ;
 	}
-	else if(enemyMoveCount == 5)
+	else if(enemyMoveCount == 7)
 	{
 		direction newDir = (lastDir == left) ? right : left ;
 		lastDir = newDir ;
@@ -141,7 +143,8 @@ void SpaceInvaders::draw() // TODO: revamp
 	pos.X = 0;
 	pos.Y = 0;
 	SetConsoleCursorPosition(hConsole, pos);
-	cout<<gametime;
+	//cout<<gametime;
+	//cout << "Score: " << score ;
 
 }
 

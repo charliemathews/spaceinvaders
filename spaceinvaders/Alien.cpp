@@ -10,6 +10,7 @@
 using std::string ;
 
 #include "Alien.h"
+#include "Constants.h"
 
 void Alien::cycle(World& w, Settings& s, KeyInput& i, int t)
 {
@@ -23,6 +24,7 @@ void Alien::cycle(World& w, Settings& s, KeyInput& i, int t)
 
 Message Alien::react(World& world, Message m)
 {
+	//if((getHealth() - m.damage) <= 0) score++ ;
 	takeHit(world, m.damage) ;
 	return Message() ;
 }
