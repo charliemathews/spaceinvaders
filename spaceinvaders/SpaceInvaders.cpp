@@ -77,7 +77,7 @@ void SpaceInvaders::update() // game logic
 		for(int j = 0; j < gridHeight; ++j)
 		{
 			Entity* entity = world.getEntity(Coord(i,j)) ;
-			if(entity != nullptr) entity->cycle(world, *settings, input, 0) ;
+			if(entity != nullptr) entity->cycle(world, *settings, input, gametime) ;
 		}
 	}
 

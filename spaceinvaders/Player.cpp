@@ -20,7 +20,7 @@ void Player::cycle(World& w, Settings& s, KeyInput& i, int t)
 		if(i.isKeyDown('A')) motion = left ;
 		else if(i.isKeyDown('D')) motion = right ;
 		move(w) ;
-		if(i.isKeyDown(' ')) true ; // fire lazor
+		//if(i.isKeyDown(' ')) // fire lazor
 	}
 }
 
