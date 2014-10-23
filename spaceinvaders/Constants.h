@@ -19,6 +19,6 @@
 
 static enum direction { up, left, down, right, none } ;
 
-//extern int score ;
+//mutable int score ;
 
 #endif

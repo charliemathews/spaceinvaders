@@ -12,7 +12,7 @@ GridGame::GridGame(string config, int w, int h) : gridWidth(w), gridHeight(h)
 
 GridGame::~GridGame(){}
 
-void GridGame::updateScore(int s) { score += s ; }
+void GridGame::updateScore(int s) { }//score += s ; }
 
 void GridGame::setWindowSize(int x, int y) { // function to set the window size
 	if(x>240) x=240; // prevents crashing if window size is too large

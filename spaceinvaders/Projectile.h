@@ -21,6 +21,8 @@ public:
 	void cycle(World&, Settings&, KeyInput&, int) ;
 	Message react(World&, Message) ;
 
+protected:
+	virtual void move(World&) ; // so that they can do their own decision making before moving 
 };
 
 #endif

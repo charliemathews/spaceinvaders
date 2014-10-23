@@ -35,11 +35,8 @@ protected:
 	KeyInput input;
 	map<string,string> graphics;
 	World world;
-	int score ;
-	int gametime; // TBD
+	int gametime;
 
-private:
-	vector<vector<string>> temp;
 };
 
 #endif
