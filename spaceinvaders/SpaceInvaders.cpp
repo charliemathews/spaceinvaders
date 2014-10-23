@@ -116,6 +116,9 @@ void SpaceInvaders::draw() // TODO: revamp
 	//		//cout << "  " << convert[temp[i][j]] << " "; // runs through the display list to print the character to the screen	
 	//		cout << " . " ;
 	//}
+
+	int margin = 2 ;
+
 	system("cls");
 	for(int i = 0; i < gridWidth; ++i)
 	{
@@ -128,8 +131,8 @@ void SpaceInvaders::draw() // TODO: revamp
 				if (ident!= DEFAULT_GRID_IDENT && ident!="undefined"){
 					HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 					COORD pos;
-					pos.X = i;
-					pos.Y = j;
+					pos.X = i+margin;
+					pos.Y = j+margin;
 					SetConsoleCursorPosition(hConsole, pos);
 					cout<<graphics.at(ident);
 				}

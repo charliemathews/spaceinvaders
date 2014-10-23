@@ -6,7 +6,7 @@ GridGame::GridGame(string config, int w, int h) : gridWidth(w), gridHeight(h)
 {
 	settings = new Settings() ; //"settings.config"
 	input = KeyInput(settings->getKeyBindings()) ;
-	setWindowSize(w*4/.95, h*3/1.3) ;
+	setWindowSize(w*2/.95, h*2/1.3) ;
 	gametime = 0;
 }
 
