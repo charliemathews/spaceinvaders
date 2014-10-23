@@ -59,7 +59,7 @@ void SpaceInvaders::runGame(){
 	for(;;){
 		Sleep(1000/TARGET_FPS);
 		input.recieveinput();
-		update();
+		//update();
 		//draw();
 	}
 }
