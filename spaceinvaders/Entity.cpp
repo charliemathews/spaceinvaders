@@ -21,3 +21,8 @@ void Entity::takeHit(World& world, int damage)
 }
 
 int Entity::getHealth() { return health ; }
+
+void Entity::setDirection(direction m)
+{
+	motion = m ;
+}
