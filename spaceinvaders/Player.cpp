@@ -7,6 +7,8 @@
 */
 
 #include <string>
+#include "World.h"
+#include "Projectile.h"
 using std::string ;
 
 #include "Player.h"
@@ -22,7 +24,11 @@ void Player::cycle(World& w, Settings& s, KeyInput& i, int t)
 		move(w) ;
 		motion = none ;
 		timeFrame = t ;
-		//if(i.isKeyDown(' ')) // fire lazor
+		if(i.isKeyDown(' ')){
+			Coord location = *w.getCoord(this);
+			location.y --;
+			w.add(new Projectile(up),location);
+		}// fire lazor
 	}
 }
 
