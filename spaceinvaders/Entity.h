@@ -22,9 +22,10 @@ class World ; // because entity and world include eachother
 class Entity {
 
 public:
-	Entity(int h = DEFAULT_ENTITY_HEALTH, string i = DEFAULT_ENTITY_IDENT, int d = 0) : health(h), identifier(i), damageDealt(d), motion(none) {} ; // derived classes should call this constructor Animate::Animate() : Entity(int,string) {} ;
+	Entity(int h = DEFAULT_ENTITY_HEALTH, string i = DEFAULT_ENTITY_IDENT, int d = 0, direction m = none) : health(h), identifier(i), damageDealt(d), motion(m) {} ; // derived classes should call this constructor Animate::Animate() : Entity(int,string) {} ;
 	virtual string getIdent() ;
 	int getHealth() ;
+	direction getMotion() ;
 	void takeHit(World& world, int damage = 1) ;
 	virtual void cycle(World&, Settings&, KeyInput&, int) = 0 ;
 	virtual Message react(World&, Message) = 0 ;
