@@ -17,6 +17,7 @@ Settings::Settings()
 	settings_map.push_back(singleSetting("keyBinding","shoot"," "));
 }
 
+/*
 Settings::Settings(string config)
 {
 	configFile = config ;
@@ -116,6 +117,7 @@ Settings::Settings(string config)
 		settings_map.push_back(input);
 	}
 }
+*/
 
 vector<char> Settings::getKeyBindings()
 {

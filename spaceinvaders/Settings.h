@@ -19,7 +19,7 @@ class Settings
 
 public:
 	Settings();
-	Settings(string f);
+	//Settings(string f);
 
 	void changeDifficulty() ;
 	string addHighScore() ;

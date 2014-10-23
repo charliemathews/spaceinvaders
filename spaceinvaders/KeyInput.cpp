@@ -17,7 +17,7 @@ KeyInput::~KeyInput(){}
 void KeyInput::recieveinput(){
 	for (int i = 0;i<keybindings.size();i++){
 		char c = keybindings.at(i);
-		keystate.at(keybindings.at(i)) = GetAsyncKeyState(c);
+		keystate[keybindings.at(i)] = GetAsyncKeyState(c);
 	}
 }
 
