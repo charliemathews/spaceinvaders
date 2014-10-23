@@ -15,7 +15,7 @@ void Player::cycle(World& w, Settings& s, KeyInput& i, int t)
 {
 	// TODO: use settings to get keybindings
 
-	if(true) // check if time is right for move
+	if(true) // player can move all the time
 	{
 		if(i.isKeyDown('A')) motion = left ;
 		else if(i.isKeyDown('D')) motion = right ;

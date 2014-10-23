@@ -13,7 +13,7 @@ using std::string ;
 
 void Alien::cycle(World& w, Settings& s, KeyInput& i, int t)
 {
-	if(true) // check if time is right for move
+	if(t%5) // check if time is right for move
 	{
 		move(w) ;
 		//randomly decide if it wants to shoot
