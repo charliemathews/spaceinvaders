@@ -31,10 +31,10 @@ void AnimateEntity::move(World& world)
 			{
 				Message result = destination_owner->react(world, Message(identifier, damageDealt)) ;	
 				if(result.damage > 0) takeHit(world,result.damage) ;
-			}
 
-			// check to see if destination_owner is still alive, if it is, die()
-			if(world.getEntity(destination) == nullptr) world.erase(this) ;
+				// check to see if destination_owner is still alive, if it is, die()
+				if(destination_owner->getHealth() > 0) world.erase(this) ;
+			}
 			else world.move(this,destination) ;
 		}
 	}
