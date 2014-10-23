@@ -58,7 +58,7 @@ SpaceInvaders::~SpaceInvaders(){}
 
 void SpaceInvaders::runGame(){
 	for(;;){
-		Sleep(1000/TARGET_FPS);
+		Sleep(8000/TARGET_FPS);
 		input.recieveinput();
 		update();
 		draw();
@@ -88,15 +88,15 @@ void SpaceInvaders::update() // game logic
 		if(entity != nullptr && entity->getIdent() == "alien") exit(0) ;
 	}
 
-	enemyMoveCount++ ;
+	if(gametime%2) enemyMoveCount++ ;
 
 	// set alien's direction of motion
 	// TODO: eventually dynamically align the enemy movement to the grid size. For now, assume default.
-	if(enemyMoveCount == 4)
+	if(enemyMoveCount == 3)
 	{
 		setEnemiesDir(down) ;
 	}
-	else if(enemyMoveCount == 5)
+	else if(enemyMoveCount == 3)
 	{
 		direction newDir = (lastDir == left) ? right : left ;
 		lastDir = newDir ;

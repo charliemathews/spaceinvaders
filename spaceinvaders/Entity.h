@@ -37,6 +37,7 @@ protected:
 	string identifier ;
 	int damageDealt ;
 	direction motion ;
+	int timeFrame ;
 
 };
 

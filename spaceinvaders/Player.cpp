@@ -15,11 +15,13 @@ void Player::cycle(World& w, Settings& s, KeyInput& i, int t)
 {
 	// TODO: use settings to get keybindings
 
-	if(true) // player can move all the time
+	if(t != timeFrame) // player can move all the time
 	{
 		if(i.isKeyDown('A')) motion = left ;
 		else if(i.isKeyDown('D')) motion = right ;
 		move(w) ;
+		motion = none ;
+		timeFrame = t ;
 		//if(i.isKeyDown(' ')) // fire lazor
 	}
 }
