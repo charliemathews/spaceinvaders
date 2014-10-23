@@ -11,6 +11,15 @@ using std::vector ;
 
 Settings::Settings()
 {
+	// settings_map.push_back(singleSetting());
+	settings_map.push_back(singleSetting("keyBinding","moveLeft","a"));
+	settings_map.push_back(singleSetting("keyBinding","moveRight","d"));
+	settings_map.push_back(singleSetting("keyBinding","shoot"," "));
+}
+
+Settings::Settings(string config)
+{
+	configFile = config ;
 	fin.open(configFile);
 
 	char test;
@@ -100,7 +109,7 @@ Settings::Settings()
 			if(test == '\n')
 				endLine = true;
 		}
-		Trio input;
+		singleSetting input;
 		input.type = left;
 		input.name = middle;
 		input.value = right;

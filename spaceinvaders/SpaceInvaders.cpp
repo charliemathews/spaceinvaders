@@ -59,7 +59,7 @@ void SpaceInvaders::runGame(){
 	for(;;){
 		Sleep(1000/TARGET_FPS);
 		input.recieveinput();
-		//update();
+		update();
 		//draw();
 	}
 }
@@ -69,9 +69,6 @@ void SpaceInvaders::update() // game logic
 	gametime++;
 	if(gametime>TARGET_FPS-1)
 		gametime = 0;
-	// Cycle all entities in the world.
-	int sizex = world.size('x') ;
-	int sizey = world.size('y') ;
 
 	// cycle all entities in the world.
 	for(int i = 0; i < gridWidth; ++i)
@@ -83,6 +80,7 @@ void SpaceInvaders::update() // game logic
 		}
 	}
 
+/*
 	// check for endgame
 	for(int i = 0; i < gridWidth; ++i)
 	{
@@ -104,6 +102,7 @@ void SpaceInvaders::update() // game logic
 		setEnemiesDir(newDir) ;
 	}
 	else enemyMoveCount++ ;
+*/
 }
 
 void SpaceInvaders::draw() // TODO: revamp

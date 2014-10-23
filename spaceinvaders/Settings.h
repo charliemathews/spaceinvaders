@@ -19,7 +19,7 @@ class Settings
 
 public:
 	Settings();
-	Settings(string f) : configFile(f) {} ;
+	Settings(string f);
 
 	void changeDifficulty() ;
 	string addHighScore() ;
@@ -29,13 +29,15 @@ public:
 	vector<char> getKeyBindings() ;
 
 private:
-	struct Trio // one setting is stored in a Trio
+	struct singleSetting // one setting is stored in a Trio
 	{
+		singleSetting() ;
+		singleSetting(string t, string n, string v) : type(t), name(n), value(v) {} ;
 		string type;
 		string name;
 		string value;
 	};
-	vector<Trio> settings_map ;
+	vector<singleSetting> settings_map ;
 	ifstream fin;
 	ofstream fout;
 	string configFile ;
