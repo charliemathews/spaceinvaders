@@ -92,11 +92,11 @@ void SpaceInvaders::update() // game logic
 
 	// set alien's direction of motion
 	// TODO: eventually dynamically align the enemy movement to the grid size. For now, assume default.
-	if(enemyMoveCount == 3)
+	if(enemyMoveCount == 4)
 	{
 		setEnemiesDir(down) ;
 	}
-	else if(enemyMoveCount == 3)
+	else if(enemyMoveCount == 5)
 	{
 		direction newDir = (lastDir == left) ? right : left ;
 		lastDir = newDir ;

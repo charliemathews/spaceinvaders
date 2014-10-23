@@ -13,7 +13,7 @@ using std::string ;
 
 void Alien::cycle(World& w, Settings& s, KeyInput& i, int t)
 {
-	if(t%5 && t != timeFrame) // check if time is right for move
+	if(t%2 && t != timeFrame) // check if time is right for move
 	{
 		move(w) ;
 		timeFrame = t ;
