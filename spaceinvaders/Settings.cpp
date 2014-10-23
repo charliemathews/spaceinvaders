@@ -12,8 +12,8 @@ using std::vector ;
 Settings::Settings()
 {
 	// settings_map.push_back(singleSetting());
-	settings_map.push_back(singleSetting("keyBinding","moveLeft","a"));
-	settings_map.push_back(singleSetting("keyBinding","moveRight","d"));
+	settings_map.push_back(singleSetting("keyBinding","moveLeft","A"));
+	settings_map.push_back(singleSetting("keyBinding","moveRight","D"));
 	settings_map.push_back(singleSetting("keyBinding","shoot"," "));
 }
 

@@ -17,8 +17,8 @@ void Player::cycle(World& w, Settings& s, KeyInput& i, int t)
 
 	if(true) // check if time is right for move
 	{
-		if(i.isKeyDown('a')) motion = left ;
-		else if(i.isKeyDown('d')) motion = right ;
+		if(i.isKeyDown('A')) motion = left ;
+		else if(i.isKeyDown('D')) motion = right ;
 		move(w) ;
 		if(i.isKeyDown(' ')) true ; // fire lazor
 	}

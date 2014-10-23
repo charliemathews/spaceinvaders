@@ -51,6 +51,7 @@ SpaceInvaders::SpaceInvaders(string config, int w, int h) : GridGame(config,w,h)
 	world.add(new Alien(), Coord(7,8)) ;
 	world.add(new Alien(), Coord(9,8)) ; 
 
+	enemyMoveCount = 0 ;
 }
 
 SpaceInvaders::~SpaceInvaders(){}
@@ -80,13 +81,14 @@ void SpaceInvaders::update() // game logic
 		}
 	}
 
-/*
 	// check for endgame
 	for(int i = 0; i < gridWidth; ++i)
 	{
 		Entity* entity = world.getEntity(Coord(i,gridHeight-4)) ; // checking the row above barriers. if alien, kill game
 		if(entity != nullptr && entity->getIdent() == "alien") exit(0) ;
 	}
+
+	enemyMoveCount++ ;
 
 	// set alien's direction of motion
 	// TODO: eventually dynamically align the enemy movement to the grid size. For now, assume default.
@@ -101,8 +103,7 @@ void SpaceInvaders::update() // game logic
 		enemyMoveCount = 0 ;
 		setEnemiesDir(newDir) ;
 	}
-	else enemyMoveCount++ ;
-*/
+
 }
 
 void SpaceInvaders::draw() // TODO: revamp
