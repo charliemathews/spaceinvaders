@@ -1,12 +1,15 @@
 #include "GridGame.h"
 #include "Settings.h"
 #include "KeyInput.h"
+#include <Windows.h>
+using namespace std ;
 
 GridGame::GridGame(string config, int w, int h) : gridWidth(w), gridHeight(h)
 {
 	settings = new Settings() ; //"settings.config"
 	input = KeyInput(settings->getKeyBindings()) ;
 	setWindowSize(w*2/.95, h*2/1.3) ;
+	SetConsoleTitle(TEXT("Space Invaders"));
 	gametime = 0;
 }
 
