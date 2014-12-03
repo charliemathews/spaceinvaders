@@ -34,7 +34,7 @@ protected:
 	Settings* settings;
 	KeyInput input;
 	map<string,string> graphics;
-	World world;
+	World* world;
 	int gametime;
 	int score ;
 

@@ -21,6 +21,11 @@ private:
 	int enemyMoveCount ;
 	direction lastDir ;
 	void setEnemiesDir(direction) ;
+
+	bool change_horizontal_direction ;
+	bool leftAlert ;
+	bool rightAlert ;
+
 };
 
 #endif

@@ -15,7 +15,8 @@ class Entity ; // because entity and world include eachother
 class World {
 
 public:
-	World(int size_x = 15, int size_y = 20) ;
+	World() ;
+	World(int size_x, int size_y) ;
 	~World() ;
 
 	void draw() ; // DEBUG FUNCTION
@@ -36,10 +37,11 @@ public:
 
 	//int getPlayerHealth() ;
 
+	void createWorld() ;
+
 private:
 	int worldSize_X, worldSize_Y ;
 	Entity *** grid ;
-	void createWorld() ;
 
 	//Entity* player ;
 };

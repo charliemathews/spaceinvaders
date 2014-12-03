@@ -1,13 +1,15 @@
 #include "GridGame.h"
 #include "Settings.h"
 #include "KeyInput.h"
+#include "Parser.h"
+
 #include <Windows.h>
 using namespace std ;
 
 GridGame::GridGame(string config)
 {
-
 	//create parser as protected so derrived game, spaceinvaders, can use it too
+	Parser onPar = Parser("spaceinvaders.dat",".=");
 
 	//load config file
 		//create settings 
@@ -19,17 +21,17 @@ GridGame::GridGame(string config)
 
 		//create world
 		gridWidth = DEFAULT_GRID_WIDTH ; // get these from the parser
-		gridHeight =  DEFAULT_GRID_HEIGHT ;
-		world = World(gridWidth,gridHeight) ;
+		gridHeight = DEFAULT_GRID_HEIGHT ;
+		world = new World(gridWidth,gridHeight) ;
 
-			// insert entities into world
+			// insert entities into world in space invaders
 
 		//create input
 		input = KeyInput(settings->getKeyBindings()) ;
 
 	//setWindowSize(w*2/.95, h*2/1.3) ; write better version of DRAW()
 
-	//setWindowSize(20,20);
+	//setWindowSize(gridWidth,gridHeight);
 
 	gametime = 0;
 }
