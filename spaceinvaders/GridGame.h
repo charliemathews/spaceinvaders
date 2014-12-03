@@ -19,14 +19,14 @@ using std::vector;
 
 class GridGame{
 public:
-	GridGame(string config = "settings.config", int w = DEFAULT_GRID_WIDTH, int h = DEFAULT_GRID_HEIGHT) ;
+	GridGame(string config = "settings.config") ;
 	~GridGame();
 	virtual void runGame() = 0 ; //starts the game loop and additional setup
+
 
 protected:
 	virtual void draw() = 0 ;
 	virtual void update() = 0 ;
-	virtual void updateScore(int);
 
 	void setWindowSize(int,int);
 
@@ -36,7 +36,15 @@ protected:
 	map<string,string> graphics;
 	World world;
 	int gametime;
+	int score ;
 
+	enum mode { MENU,PLAY,EDIT,HIGHSCORES };
+	mode gamestate ;  
+
+	struct coreReference {
+		World* w ;
+		int* score ;
+	};
 };
 
 #endif

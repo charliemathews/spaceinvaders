@@ -10,7 +10,7 @@ using std::string ;
 class SpaceInvaders: public GridGame
 {
 public:
-	SpaceInvaders(string config = "settings.config", int w = DEFAULT_GRID_WIDTH, int h = DEFAULT_GRID_HEIGHT) ;
+	SpaceInvaders(string config = "settings.config") ;
 	~SpaceInvaders();
 	void runGame();
 

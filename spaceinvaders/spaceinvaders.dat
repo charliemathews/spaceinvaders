@@ -1,0 +1,37 @@
+setting.level=difficulty normal
+setting.level=gridheight 500
+setting.level=gridwidth 500
+
+setting.keybinding = left a
+setting.keybinding = right d
+setting.keybinding = shoot space
+
+world.entity=barrier 1 17
+world.entity=barrier 4 17
+world.entity=barrier 7 17
+world.entity=barrier 10 17
+world.entity=barrier 13 17
+
+world.entity=alien 1 2
+world.entity=alien 3 2
+world.entity=alien 5 2
+world.entity=alien 7 2
+world.entity=alien 9 2
+
+world.entity=alien 1 4
+world.entity=alien 3 4
+world.entity=alien 5 4
+world.entity=alien 7 4
+world.entity=alien 9 4
+
+world.entity=alien 1 6
+world.entity=alien 3 6
+world.entity=alien 5 6
+world.entity=alien 7 6
+world.entity=alien 9 6
+
+world.entity=alien 1 8
+world.entity=alien 3 8
+world.entity=alien 5 8
+world.entity=alien 7 8
+world.entity=alien 9 8

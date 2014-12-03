@@ -2,6 +2,9 @@
 
 */
 
+#include <Windows.h>
+using namespace std ;
+
 #include "SpaceInvaders.h"
 #include "Player.h"
 #include "Barrier.h"
@@ -9,14 +12,14 @@
 #include "Alien.h"
 #include "Entity_Animate.h"
 
-SpaceInvaders::SpaceInvaders(string config, int w, int h) : GridGame(config,w,h)
+SpaceInvaders::SpaceInvaders(string config) : GridGame(config)
 {
-	//score = 0 ;
+	SetConsoleTitle(TEXT("Space Invaders"));
 
-	graphics["player"] = "^";
-	graphics["alien"] = "V";
-	graphics["projectile"] = "*";
-	graphics["barrier"] = "=";
+	graphics["player"]				= "^";
+	graphics["alien"]				= "V";
+	graphics["projectile"]			= "*";
+	graphics["barrier"]				= "=";
 	graphics[DEFAULT_GRID_IDENT]	= " ";
 
 	Player* thePlayer = new Player() ;
@@ -59,6 +62,8 @@ SpaceInvaders::SpaceInvaders(string config, int w, int h) : GridGame(config,w,h)
 SpaceInvaders::~SpaceInvaders(){}
 
 void SpaceInvaders::runGame(){
+	//setWindowSize(gridWidth, gridHeight);
+	//GridGame::draw();
 	for(;;){
 		Sleep(3000/TARGET_FPS);
 		input.recieveinput();
@@ -100,7 +105,7 @@ void SpaceInvaders::update() // game logic
 	}
 	else if(enemyMoveCount == 7)
 	{
-		direction newDir = (lastDir == left) ? right : left ;
+		direction newDir = (lastDir == direction::left) ? direction::right : direction::left ;
 		lastDir = newDir ;
 		enemyMoveCount = 0 ;
 		setEnemiesDir(newDir) ;
@@ -110,33 +115,38 @@ void SpaceInvaders::update() // game logic
 
 void SpaceInvaders::draw() // TODO: revamp
 {
-	//for(int i=0; i<gridHeight; i++) {
-	//	for(int k=0; k<gridWidth*4/1.3; k++) { cout << " "; if(k==gridWidth*3) cout << endl; } // adds the spacing on top to place each entity in a 3x3 grid
-	//	for(int j=0; j<gridWidth; j++)
-	//		//cout << "  " << convert[temp[i][j]] << " "; // runs through the display list to print the character to the screen	
-	//		cout << " . " ;
-	//}
-
-	int margin = 2 ;
+	int margin = 2; // maybe unnecessary
 
 	system("cls");
-	for(int i = 0; i < gridWidth; ++i)
-	{
-		for(int j = 0; j < gridHeight; ++j)
-		{
+	cout << endl << endl; // leaves room for the HUD
+	for(int i=0; i<gridHeight; ++i) {
+		if(i==0 || i==gridHeight-1) {
+			cout << endl << "|";
+			for(int j=0; j<gridWidth+2; ++j)
+				cout << "-";
+			cout << "|";
+		}
+		else {
+			cout << endl;
+			cout << "|";
+			for(int j=0; j<gridWidth+2; ++j)
+				cout << " ";
+			cout << "|";
+		}
+	}
+	for(int i = 0; i < gridWidth; ++i) {
+		for(int j = 0; j < gridHeight; ++j) {
 			Entity* entity = world.getEntity(Coord(i,j)) ;
-			if(entity != nullptr)
-			{
+			if(entity != nullptr) {
 				std::string ident = entity->getIdent();
-				if (ident!= DEFAULT_GRID_IDENT && ident!="undefined"){
+				if(ident!= DEFAULT_GRID_IDENT && ident!="undefined"){
 					HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 					COORD pos;
-					pos.X = i+margin;
+					pos.X = i+margin; // maybe don't need margin when level editor is implemented
 					pos.Y = j+margin;
 					SetConsoleCursorPosition(hConsole, pos);
 					cout<<graphics.at(ident);
 				}
-
 				// match ident to the graphics map and move the cursor to i,j and print that char
 			}
 		}
@@ -146,9 +156,9 @@ void SpaceInvaders::draw() // TODO: revamp
 	pos.X = 0;
 	pos.Y = 0;
 	SetConsoleCursorPosition(hConsole, pos);
+	//can be placed at top or bottom
 	//cout<<gametime;
 	//cout << "Score: " << score ;
-
 }
 
 void SpaceInvaders::setEnemiesDir(direction m)

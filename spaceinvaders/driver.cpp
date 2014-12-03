@@ -19,7 +19,7 @@
 int main() 
 {
 
-	SpaceInvaders game("settings.config",15,20) ;
+	SpaceInvaders game("spaceinvaders.dat") ;
 	game.runGame();
 
 	return 0 ;
