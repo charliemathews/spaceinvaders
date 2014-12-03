@@ -38,7 +38,7 @@ protected:
 	int gametime;
 	int score ;
 
-	enum mode { MENU,PLAY,EDIT,HIGHSCORES };
+	enum mode { MENU,PLAY,EDIT,HIGHSCORES,QUIT };
 	mode gamestate ;  
 
 	struct coreReference {

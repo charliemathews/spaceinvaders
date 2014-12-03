@@ -57,6 +57,8 @@ SpaceInvaders::SpaceInvaders(string config) : GridGame(config)
 	world->add(new Alien(), Coord(9,8)) ; 
 
 	enemyMoveCount = 0 ;
+
+	gamestate = MENU ;
 }
 
 SpaceInvaders::~SpaceInvaders(){}
@@ -71,11 +73,50 @@ void SpaceInvaders::runGame(){
 
 	while(true)
 	{
-		// use gamestates here
-		Sleep(3000/TARGET_FPS);
-		input.recieveinput();
-		update();
-		draw();
+		// use gamestates to decide action
+		if(gamestate == PLAY)
+		{
+			Sleep(3000/TARGET_FPS);
+			input.recieveinput();
+			update();
+			draw();
+		}
+		else if(gamestate == MENU)
+		{
+			cout << "MAIN MENU" << endl << endl ;
+			cout << "(1) Play Game" << endl ;
+			cout << "(2) Edit Level" << endl ;
+			cout << "(3) Highscores" << endl ;
+			cout << "(4) Quit" << endl << endl ;
+
+			cout << "Choose an option:" ;
+			int option ;
+			cin >> option ;
+
+			if(option == 1)
+			{
+				gamestate = PLAY ;
+			}
+			else if(option == 2) gamestate = mode::EDIT ;
+			else if(option == 3) gamestate = mode::HIGHSCORES ;
+			else if(option == 4) gamestate = mode::QUIT ;
+			else
+			{
+				gamestate = mode::MENU ;
+			}
+		} 
+		else if(gamestate == EDIT)
+		{
+			// level editor call here!
+		}
+		else if(gamestate == HIGHSCORES)
+		{
+			//output highscores, future todo
+		}
+		else if(gamestate == QUIT)
+		{
+			exit(0) ;
+		}
 	}
 }
 
@@ -84,7 +125,6 @@ void SpaceInvaders::update() // game logic
 	gametime++;
 	if(gametime>TARGET_FPS-1)
 		gametime = 0;
-
 
 	// check borders
 	int leftCol = 0 ;
@@ -149,35 +189,17 @@ void SpaceInvaders::update() // game logic
 	for(int i = 0; i < gridWidth; ++i)
 	{
 		Entity* entity = world->getEntity(Coord(i,gridHeight-4)) ; // checking the row above barriers. if alien, kill game
-		if(entity != nullptr && entity->getIdent() == "alien") exit(0) ;
+		if(entity != nullptr && entity->getIdent() == "alien") gamestate = QUIT ; //exit(0) ;
 	}
-	
-
-	/*
-	if(gametime%2) enemyMoveCount++ ;
-
-	// set alien's direction of motion
-	// TODO: eventually dynamically align the enemy movement to the grid size. For now, assume default.
-	if(enemyMoveCount == 6)
-	{
-		setEnemiesDir(down) ;
-	}
-	else if(enemyMoveCount == 7)
-	{
-		direction newDir = (lastDir == direction::left) ? direction::right : direction::left ;
-		lastDir = newDir ;
-		enemyMoveCount = 0 ;
-		setEnemiesDir(newDir) ;
-	}
-	*/
 
 }
 
-void SpaceInvaders::draw() // TODO: revamp
+void SpaceInvaders::draw()
 {
-	int margin = 2; // maybe unnecessary
+	int margin = 2;
 
 	system("cls");
+	/*
 	cout << endl << endl; // leaves room for the HUD
 	for(int i=0; i<gridHeight; ++i) {
 		if(i==0 || i==gridHeight-1) {
@@ -194,6 +216,7 @@ void SpaceInvaders::draw() // TODO: revamp
 			cout << "|";
 		}
 	}
+	*/
 	for(int i = 0; i < gridWidth; ++i) {
 		for(int j = 0; j < gridHeight; ++j) {
 			Entity* entity = world->getEntity(Coord(i,j)) ;
@@ -216,9 +239,6 @@ void SpaceInvaders::draw() // TODO: revamp
 	pos.X = 0;
 	pos.Y = 0;
 	SetConsoleCursorPosition(hConsole, pos);
-	//can be placed at top or bottom
-	//cout<<gametime;
-	//cout << "Score: " << score ;
 }
 
 void SpaceInvaders::setEnemiesDir(direction m)
