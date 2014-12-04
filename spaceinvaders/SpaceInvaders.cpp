@@ -260,16 +260,17 @@ void SpaceInvaders::editorReadFile() {
 	settingsEditor = onPar.linesMatching("setting");
 	worldEditor = onPar.linesMatching("world");
 	int selection=0;
-	cout << endl << "1. Edit grid" << endl << "2. Edit settings" << endl << endl << "Selection: ";
+	cout << endl <<"0. Escape"<<endl << "1. Edit grid" << endl << "2. Edit settings" << endl << endl << "Selection: ";
 	cin >> selection;
 	do {
-		if(selection==1) editorDrawGrid();
+		if (selection==0) gamestate = MENU;
+		else if(selection==1) editorDrawGrid();
 		else if(selection==2) editorDrawSettings();
 		else {
 			cout << "Make a valid selection (1/2): ";
 			cin >> selection;
 		}
-	}while(selection!=1 || selection!=2);
+	}while(selection<0 || selection>2);
 }
 
 void SpaceInvaders::editorDrawGrid() {
@@ -348,8 +349,7 @@ void SpaceInvaders::editorDrawSettings() {
 	cin >> selection;
 	do {
 		if (selection ==0){
-			cin.clear();
-			cin.ignore();
+			editorReadFile();
 		}
 		else if(selection==1) {
 			char diff;
@@ -450,5 +450,5 @@ void SpaceInvaders::editorDrawSettings() {
 			cout << "Make a valid selection: ";
 			cin >> selection;
 		}
-	}while((selection<0 || selection>6));
+	}while((selection<1 || selection>6));
 }
