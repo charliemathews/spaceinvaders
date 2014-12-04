@@ -1,8 +1,10 @@
 #include "parser.h"
 
-Parser::Parser(string filepath, string d){
+Parser::Parser(string filepath, char sep, char eqv){
+	sep_delim = sep;
+	eqv_delim = eqv;
 	fname = filepath;
-	delim = d;
+	delimiters = std::string(&sep) + std::string(&eqv);
 	ifstream file;
 	file.open(filepath);
 	string templine;
@@ -11,10 +13,10 @@ Parser::Parser(string filepath, string d){
 			vector<string> line;
 			char str[500];
 			strcpy(str,templine.c_str());
-			char * ptr = strtok(str, delim.c_str());
+			char * ptr = strtok(str, delimiters.c_str());
 			while(ptr !=nullptr){
 				line.push_back(std::string(ptr));
-				ptr = strtok(NULL,delim.c_str());
+				ptr = strtok(NULL,delimiters.c_str());
 			}
 			if (line.size()!=0)
 				lines.push_back(line);
@@ -32,9 +34,27 @@ vector<vector<string>> Parser::linesMatching(string key, int pos){
 	return returnvec;
 }
 
+vector<vector<string>> Parser::linesContaining(string key, int pos){
+	vector<vector<string>> returnvec;
+	for (int i=0;i<lines.size();i++){
+		if (lines.at(i).at(pos).find(key) != string::npos)
+			returnvec.push_back(lines.at(i));
+	}
+	return returnvec;
+}
+
 void Parser::deleteMatching(string key, int pos){
 	for (int i=0;i<lines.size();i++){
 		if (lines.at(i).at(pos)==key){
+			lines.erase(lines.begin() + i);
+			i--;//vector size has changed, we need to evaluate what's now in this spot
+		}
+	}
+}
+
+void Parser::deleteContaining(string key, int pos){
+	for (int i=0;i<lines.size();i++){
+		if (lines.at(i).at(pos).find(key) != string::npos){
 			lines.erase(lines.begin() + i);
 			i--;//vector size has changed, we need to evaluate what's now in this spot
 		}
@@ -45,10 +65,10 @@ void Parser::add(string linetoadd){
 	vector<string> line;
 	char str[500];
 	strcpy(str,linetoadd.c_str());
-	char * ptr = strtok(str, delim.c_str());
+	char * ptr = strtok(str, delimiters.c_str());
 	while(ptr !=nullptr){
 		line.push_back(std::string(ptr));
-		ptr = strtok(NULL,delim.c_str());
+		ptr = strtok(NULL,delimiters.c_str());
 	}
 	if (line.size()!=0)
 		lines.push_back(line);
@@ -61,9 +81,9 @@ void Parser::saveToFile(){
 		for (int j=0;j<lines.at(i).size()-1;j++){
 			file << lines.at(i).at(j);
 			if (j!=lines.at(i).size()-2)//if it's not the last key element, output operator
-				file<<delim.at(0);
+				file<<sep_delim;
 		}
-		file << delim.at(1);
+		file << eqv_delim;
 		file << lines.at(i).at(lines.at(i).size()-1);//outputs the result delimeter followed by the last element
 		file << endl;
 	}

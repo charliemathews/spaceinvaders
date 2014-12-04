@@ -9,7 +9,7 @@ using namespace std ;
 GridGame::GridGame(string config)
 {
 	//create parser as protected so derrived game, spaceinvaders, can use it too
-	Parser onPar = Parser("spaceinvaders.dat",".=");
+	Parser onPar = Parser("spaceinvaders.dat",'.','=');
 
 
 	//LOAD CONFIG DATA -=-=-=-=-=-=-=-=-=-=-
