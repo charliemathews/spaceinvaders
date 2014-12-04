@@ -333,18 +333,25 @@ void SpaceInvaders::editorDrawGrid() {
 
 void SpaceInvaders::editorDrawSettings() {
 	Parser onPar = Parser("spaceinvaders.dat",'.', '=');
-	int count=1;
 	cout << endl << "Settings:" << endl;
-	for(vector<vector<string>>::iterator it1 = settingsEditor.begin(); it1 != settingsEditor.end(); ++it1) {
-		if(count<=3) cout << count << ". " << (*it1).at(2) << endl;
-		else cout << count << "." << (*it1).at(2) << endl;
-		count++;
-	}
+	for(vector<vector<string>>::iterator it1 = settingsEditor.begin(); it1 != settingsEditor.end(); ++it1)
+		cout << " " << (*it1).at(2) << endl;
+	cout << endl << "0. Escape"<< endl;
+	cout << "1. Change difficulty" << endl;
+	cout << "2. Change grid height" << endl;
+	cout << "3. Change grid width" << endl;
+	cout << "4. Change right keymap" << endl;
+	cout << "5. Change left keymap" << endl;
+	cout << "6. Change shoot keymap" << endl;
 	int selection=0;
 	cout << endl << "Selection: ";
 	cin >> selection;
 	do {
-		if(selection==1) {
+		if (selection ==0){
+			cin.clear();
+			cin.ignore();
+		}
+		else if(selection==1) {
 			char diff;
 			cout << endl << "Enter new difficulty (e/n/h): ";
 			cin >> diff;
@@ -406,8 +413,8 @@ void SpaceInvaders::editorDrawSettings() {
 			cout << endl << "Enter a new key to move left: ";
 			cin >> left;
 			string left1Char = left.substr(0, 1);
-			onPar.deleteContaining("left", 2);
-			onPar.add("setting.keybinding = left "+left1Char);
+			onPar.deleteContaining("moveLeft", 2);
+			onPar.add("setting.keybinding=moveLeft "+left1Char);
 			onPar.saveToFile();
 			editorReadFile();
 		}
@@ -416,8 +423,8 @@ void SpaceInvaders::editorDrawSettings() {
 			cout << endl << "Enter a new key to move right: ";
 			cin >> right;
 			string right1Char = right.substr(0, 1);
-			onPar.deleteContaining("right", 2);
-			onPar.add("setting.keybinding = right "+right1Char);
+			onPar.deleteContaining("moveRight", 2);
+			onPar.add("setting.keybinding=moveRight "+right1Char);
 			onPar.saveToFile();
 			editorReadFile();
 		}
@@ -425,15 +432,23 @@ void SpaceInvaders::editorDrawSettings() {
 			string shoot;
 			cout << endl << "Enter a new key to shoot: ";
 			cin >> shoot;
-			string shoot1Char = shoot.substr(0, 1);
-			onPar.deleteContaining("shoot", 2);
-			onPar.add("setting.keybinding = shoot "+shoot1Char);
-			onPar.saveToFile();
-			editorReadFile();
+			if(shoot=="space") {
+				onPar.deleteContaining("shoot", 2);
+				onPar.add("setting.keybinding=shoot "+shoot);
+				onPar.saveToFile();
+				editorReadFile();
+			}
+			else {
+				string shoot1Char = shoot.substr(0, 1);
+				onPar.deleteContaining("shoot", 2);
+				onPar.add("setting.keybinding=shoot "+shoot1Char);
+				onPar.saveToFile();
+				editorReadFile();
+			}
 		}
 		else {
 			cout << "Make a valid selection: ";
 			cin >> selection;
 		}
-	}while(selection<1 || selection>6);
+	}while((selection<0 || selection>6));
 }
