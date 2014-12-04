@@ -16,6 +16,7 @@ using std::vector;
 #include "KeyInput.h"
 #include "Settings.h"
 #include "World.h"
+#include "Parser.h"
 
 class GridGame{
 public:
@@ -31,6 +32,7 @@ protected:
 	void setWindowSize(int,int);
 
 	int gridWidth, gridHeight ;
+	Parser* data ;
 	Settings* settings;
 	KeyInput input;
 	map<string,string> graphics;

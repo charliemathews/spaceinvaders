@@ -8,27 +8,25 @@ using namespace std ;
 
 GridGame::GridGame(string config)
 {
-	//create parser as protected so derrived game, spaceinvaders, can use it too
-	Parser onPar = Parser("spaceinvaders.dat",'.','=');
+	data = new Parser("spaceinvaders.dat",'.','=');
 
 	//LOAD CONFIG DATA -=-=-=-=-=-=-=-=-=-=-
 
 		// -> settings 
-		settings = new Settings(onPar.linesMatching("setting")); 
+		settings = new Settings(data->linesMatching("setting")); 
 
 		// -> input
 		input = KeyInput(settings->getKeyBindings()) ;
 
 		// -> graphics
+			//load dynamically in derrived class
 
 		// -> world
 		gridWidth = DEFAULT_GRID_WIDTH ; // get these from the parser
 		gridHeight = DEFAULT_GRID_HEIGHT ;
 		world = new World(gridWidth,gridHeight) ;
-			// insert entities into world in space invaders
 
-
-	//INITIAL SETUP
+	//INITIAL SETUP -=-=-=-=-=-=-=-=-=-=-
 	setWindowSize(gridWidth,gridHeight);
 	gametime = 0;
 }

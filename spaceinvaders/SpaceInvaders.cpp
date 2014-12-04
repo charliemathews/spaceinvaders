@@ -25,39 +25,49 @@ SpaceInvaders::SpaceInvaders(string config) : GridGame(config)
 	Player* thePlayer = new Player() ;
 
 	world->add(thePlayer, Coord(0,(int)world->size('y')-1)) ; // player always spawns in bottom left
+
+
+	// LOAD SETTINGS FROM FILE
+	vector<vector<string>> world_input = GridGame::data->linesMatching("world") ;
+	for(auto &p : world_input)
+	{
+		// LOAD ENTITIES
+		if(p.size() == 3 && p[1] == "entity")
+		{
+			stringstream ss ;
+			ss << p[2] ;
+
+			string segment;
+			vector<string> seglist;
+
+			while(getline(ss, segment, ' '))
+			{
+			   seglist.push_back(segment);
+			}
+
+			if(seglist.size() == 3)
+			{
+				Entity* newEnt = nullptr ;
+				string ident = seglist[0] ;
+				
+				// DEFINE LOADABLE ENTITIES
+				if(ident == "barrier") newEnt = new Barrier() ;
+				if(ident == "alien") newEnt = new Alien() ;
 	
-	world->add(new Barrier(), Coord(1,17)) ;
-	world->add(new Barrier(), Coord(4,17)) ;
-	world->add(new Barrier(), Coord(7,17)) ;
-	world->add(new Barrier(), Coord(10,17)) ;
-	world->add(new Barrier(), Coord(13,17)) ;
+				int x, y;
+				ss.clear() ;
+				ss << seglist[1] ;
+				ss >> x ;
+				ss.clear() ;
+				ss << seglist[2] ;
+				ss >> y ;
 
-	world->add(new Alien(), Coord(1,2)) ;
-	world->add(new Alien(), Coord(3,2)) ;
-	world->add(new Alien(), Coord(5,2)) ;
-	world->add(new Alien(), Coord(7,2)) ;
-	world->add(new Alien(), Coord(9,2)) ;
-
-	world->add(new Alien(), Coord(1,4)) ;
-	world->add(new Alien(), Coord(3,4)) ;
-	world->add(new Alien(), Coord(5,4)) ;
-	world->add(new Alien(), Coord(7,4)) ;
-	world->add(new Alien(), Coord(9,4)) ; 
-
-	world->add(new Alien(), Coord(1,6)) ;
-	world->add(new Alien(), Coord(3,6)) ;
-	world->add(new Alien(), Coord(5,6)) ;
-	world->add(new Alien(), Coord(7,6)) ;
-	world->add(new Alien(), Coord(9,6)) ; 
-
-	world->add(new Alien(), Coord(1,8)) ;
-	world->add(new Alien(), Coord(3,8)) ;
-	world->add(new Alien(), Coord(5,8)) ;
-	world->add(new Alien(), Coord(7,8)) ;
-	world->add(new Alien(), Coord(9,8)) ; 
+				if(newEnt != nullptr) world->add(newEnt,Coord(x,y)) ;
+			}
+		}
+	}
 
 	enemyMoveCount = 0 ;
-
 	gamestate = MENU ;
 }
 
