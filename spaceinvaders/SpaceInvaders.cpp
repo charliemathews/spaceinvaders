@@ -109,7 +109,7 @@ void SpaceInvaders::runGame(){
 			if(option == 1) gamestate = PLAY ;
 			else if(option == 2) gamestate = mode::EDIT ;
 			//else if(option == 3) gamestate = mode::HIGHSCORES ;
-			else if(option == 9) gamestate = mode::QUIT ;
+			else if(option == 0) gamestate = mode::QUIT ;
 			else gamestate = mode::MENU ;
 		} 
 
