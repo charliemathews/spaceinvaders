@@ -12,11 +12,13 @@ private:
 	vector<vector<string>> lines;
 	vector<char> delimiters;
 	string delim;
+	string fname;
 public:
 	Parser(string filepath, string d);
 	vector<vector<string>>linesMatching(string key, int pos = 0);
 	void deleteMatching(string key, int pos = 0);
 	void add(string linetoadd);
+	void saveToFile();
 };
 
 #endif

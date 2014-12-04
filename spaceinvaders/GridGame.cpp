@@ -11,25 +11,26 @@ GridGame::GridGame(string config)
 	//create parser as protected so derrived game, spaceinvaders, can use it too
 	Parser onPar = Parser("spaceinvaders.dat",".=");
 
-	//load config file
 
-		//create settings 
-			//settings = new Settings() ;
-			settings = new Settings(onPar.linesMatching("setting")) ; 
+	//LOAD CONFIG DATA -=-=-=-=-=-=-=-=-=-=-
 
-		//create input
-			input = KeyInput(settings->getKeyBindings()) ;
+		// -> settings 
+		settings = new Settings(onPar.linesMatching("setting")) ; 
 
-		//create graphics
+		// -> input
+		input = KeyInput(settings->getKeyBindings()) ;
 
-		//create world
-			gridWidth = DEFAULT_GRID_WIDTH ; // get these from the parser
-			gridHeight = DEFAULT_GRID_HEIGHT ;
-			world = new World(gridWidth,gridHeight) ;
+		// -> graphics
+
+		// -> world
+		gridWidth = DEFAULT_GRID_WIDTH ; // get these from the parser
+		gridHeight = DEFAULT_GRID_HEIGHT ;
+		world = new World(gridWidth,gridHeight) ;
 			// insert entities into world in space invaders
 
-	setWindowSize(gridWidth,gridHeight);
 
+	//INITIAL SETUP
+	setWindowSize(gridWidth,gridHeight);
 	gametime = 0;
 }
 
