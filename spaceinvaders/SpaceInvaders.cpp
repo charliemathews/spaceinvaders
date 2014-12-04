@@ -104,7 +104,7 @@ void SpaceInvaders::runGame(){
 		else if(gamestate == EDIT)
 		{
 			editorReadFile();
-			gamestate=MENU;
+			gamestate=mode::MENU;
 			// level editor call here!
 		}
 		else if(gamestate == HIGHSCORES)
@@ -264,7 +264,7 @@ void SpaceInvaders::editorReadFile() {
 	cout << endl <<"0. Escape"<<endl << "1. Edit grid" << endl << "2. Edit settings" << endl << endl << "Selection: ";
 	cin >> selection;
 	do {
-		if (selection==0) gamestate = MENU;
+		if (selection==0){}
 		else if(selection==1) editorDrawGrid();
 		else if(selection==2) editorDrawSettings();
 		else {
@@ -449,5 +449,5 @@ void SpaceInvaders::editorDrawSettings() {
 			cout << "Make a valid selection: ";
 			cin >> selection;
 		}
-	}while((selection<1 || selection>6));
+	}while((selection<0 || selection>6));
 }
