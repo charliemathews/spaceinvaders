@@ -1,5 +1,6 @@
 #ifndef PARSER_H
 #define PARSER_H
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <vector>
 #include <iostream>

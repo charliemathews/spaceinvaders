@@ -11,11 +11,10 @@ GridGame::GridGame(string config)
 	//create parser as protected so derrived game, spaceinvaders, can use it too
 	Parser onPar = Parser("spaceinvaders.dat",'.','=');
 
-
 	//LOAD CONFIG DATA -=-=-=-=-=-=-=-=-=-=-
 
 		// -> settings 
-		settings = new Settings(onPar.linesMatching("setting")) ; 
+		settings = new Settings(onPar.linesMatching("setting")); 
 
 		// -> input
 		input = KeyInput(settings->getKeyBindings()) ;

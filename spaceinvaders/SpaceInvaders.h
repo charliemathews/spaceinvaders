@@ -4,6 +4,9 @@
 #include <string>
 using std::string ;
 
+#include "Parser.h"
+#include <sstream>
+
 #include "GridGame.h"
 #include "Entity.h"
 
@@ -21,6 +24,15 @@ private:
 	int enemyMoveCount ;
 	direction lastDir ;
 	void setEnemiesDir(direction) ;
+
+	void editorReadFile();
+	void editorDrawGrid();
+	void editorDrawSettings();
+	void editorAdd();
+	void editorDelete();
+
+	vector<vector<string>> settingsEditor;
+	vector<vector<string>> worldEditor;
 
 	bool change_horizontal_direction ;
 	bool leftAlert ;

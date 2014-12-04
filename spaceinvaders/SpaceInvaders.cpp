@@ -100,10 +100,12 @@ void SpaceInvaders::runGame(){
 			else if(option == 4) gamestate = mode::QUIT ;
 			else gamestate = mode::MENU ;
 		} 
+
 		else if(gamestate == EDIT)
 		{
+			editorReadFile();
+			gamestate=MENU;
 			// level editor call here!
-			gamestate = mode::MENU ;
 		}
 		else if(gamestate == HIGHSCORES)
 		{
@@ -249,4 +251,189 @@ void SpaceInvaders::setEnemiesDir(direction m)
 				if(entity->getIdent() == "alien") entity->setDirection(m) ;
 			}
 		}
+}
+
+void SpaceInvaders::editorReadFile() {
+	system("cls");
+	cout << "LEVEL EDITOR" << endl;
+	Parser onPar = Parser("spaceinvaders.dat",'.', '=');
+	settingsEditor = onPar.linesMatching("setting");
+	worldEditor = onPar.linesMatching("world");
+	int selection=0;
+	cout << endl << "1. Edit grid" << endl << "2. Edit settings" << endl << endl << "Selection: ";
+	cin >> selection;
+	do {
+		if(selection==1) editorDrawGrid();
+		else if(selection==2) editorDrawSettings();
+		else {
+			cout << "Make a valid selection (1/2): ";
+			cin >> selection;
+		}
+	}while(selection!=1 || selection!=2);
+}
+
+void SpaceInvaders::editorDrawGrid() {
+	system("cls");
+	int gameWidth = 0, gameHeight = 0;
+	string heightPref="gridheight ";
+	string widthPref="gridwidth ";
+	for(vector<vector<string>>::iterator it1 = settingsEditor.begin(); it1 != settingsEditor.end(); ++it1) {
+		string argument=(*it1).at(2);
+		if(argument.substr(0, heightPref.size()) == heightPref) {
+			string heightValue = argument.substr(heightPref.size());
+			gameHeight = atoi(heightValue.c_str());
+		}
+		if(argument.substr(0, widthPref.size()) == widthPref) {
+			string widthValue = argument.substr(widthPref.size());
+			gameWidth = atoi(widthValue.c_str());
+		}
+	}
+	setWindowSize(2*(gameWidth)+15, gameHeight+7);
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD pos;
+	pos.X=2;
+	pos.Y=0;
+	SetConsoleCursorPosition(hConsole, pos);
+	for(int i=0; i<gameWidth/10; ++i) {
+		pos.X+=20;
+		SetConsoleCursorPosition(hConsole, pos);
+		cout << i+1;
+	}
+	pos.X=0;
+	pos.Y=2;
+	SetConsoleCursorPosition(hConsole, pos);
+	for(int i=0; i<gameHeight/10; ++i) {
+		pos.Y+=10;
+		SetConsoleCursorPosition(hConsole, pos);
+		cout << i+1;
+	}
+	pos.X=0;
+	pos.Y=1;
+	SetConsoleCursorPosition(hConsole, pos);
+	for(int i=0; i<gameWidth; ++i) {
+		pos.X+=2;
+		SetConsoleCursorPosition(hConsole, pos);
+		cout << i%10;
+	}
+	pos.X=1;
+	pos.Y=1;
+	SetConsoleCursorPosition(hConsole, pos);
+	for(int i=0; i<gameHeight; ++i) {
+		pos.Y+=1;
+		SetConsoleCursorPosition(hConsole, pos);
+		cout << i%10;
+	}
+	pos.X=0;
+	pos.Y+=2;
+	SetConsoleCursorPosition(hConsole, pos);
+	for(vector<vector<string>>::iterator it1 = worldEditor.begin(); it1 != worldEditor.end(); ++it1) {
+	}
+	system("Pause");
+}
+
+void SpaceInvaders::editorDrawSettings() {
+	Parser onPar = Parser("spaceinvaders.dat",'.', '=');
+	int count=1;
+	cout << endl << "Settings:" << endl;
+	for(vector<vector<string>>::iterator it1 = settingsEditor.begin(); it1 != settingsEditor.end(); ++it1) {
+		if(count<=3) cout << count << ". " << (*it1).at(2) << endl;
+		else cout << count << "." << (*it1).at(2) << endl;
+		count++;
+	}
+	int selection=0;
+	cout << endl << "Selection: ";
+	cin >> selection;
+	do {
+		if(selection==1) {
+			char diff;
+			cout << endl << "Enter new difficulty (e/n/h): ";
+			cin >> diff;
+			do {
+				if(diff=='e') {
+					onPar.deleteContaining("difficulty", 2);
+					onPar.add("setting.level=difficulty easy");
+					onPar.saveToFile();
+					editorReadFile();
+				}
+				else if(diff=='n') {
+					onPar.deleteContaining("difficulty", 2);
+					onPar.add("setting.level=difficulty normal");
+					onPar.saveToFile();
+					editorReadFile();
+				}
+				else if(diff=='h') {
+					onPar.deleteContaining("difficulty", 2);
+					onPar.add("setting.level=difficulty hard");
+					onPar.saveToFile();
+					editorReadFile();
+				}
+				else {
+					cout << "Please enter valid difficulty (e/n/h): ";
+					cin >> diff;
+				}
+			}while(diff!='e'||diff!='n'||diff!='h');
+		}
+		else if(selection==2) {
+			int height=0;
+			cout << endl << "Enter a new height (integer): ";
+			cin >> height;
+			cin.clear();
+			cin.ignore();
+			stringstream ss;
+			ss << height;
+			string heightStr = ss.str();
+			onPar.deleteContaining("gridheight", 2);
+			onPar.add("setting.level=gridheight "+heightStr);
+			onPar.saveToFile();
+			editorReadFile();
+		}
+		else if(selection==3) {
+			int width=0;
+			cout << endl << "Enter a new width (integer): ";
+			cin >> width;
+			cin.clear();
+			cin.ignore();
+			stringstream ss;
+			ss << width;
+			string widthStr = ss.str();
+			onPar.deleteContaining("getwidth", 2);
+			onPar.add("setting.level=gridwidth "+widthStr);
+			onPar.saveToFile();
+			editorReadFile();
+		}
+		else if(selection==4) {
+			string left;
+			cout << endl << "Enter a new key to move left: ";
+			cin >> left;
+			string left1Char = left.substr(0, 1);
+			onPar.deleteContaining("left", 2);
+			onPar.add("setting.keybinding = left "+left1Char);
+			onPar.saveToFile();
+			editorReadFile();
+		}
+		else if(selection==5) {
+			string right;
+			cout << endl << "Enter a new key to move right: ";
+			cin >> right;
+			string right1Char = right.substr(0, 1);
+			onPar.deleteContaining("right", 2);
+			onPar.add("setting.keybinding = right "+right1Char);
+			onPar.saveToFile();
+			editorReadFile();
+		}
+		else if(selection==6) {
+			string shoot;
+			cout << endl << "Enter a new key to shoot: ";
+			cin >> shoot;
+			string shoot1Char = shoot.substr(0, 1);
+			onPar.deleteContaining("shoot", 2);
+			onPar.add("setting.keybinding = shoot "+shoot1Char);
+			onPar.saveToFile();
+			editorReadFile();
+		}
+		else {
+			cout << "Make a valid selection: ";
+			cin >> selection;
+		}
+	}while(selection<1 || selection>6);
 }
