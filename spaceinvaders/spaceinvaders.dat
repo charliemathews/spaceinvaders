@@ -1,6 +1,6 @@
 setting.level=difficulty normal
-setting.level=gridheight 500
-setting.level=gridwidth 500
+setting.level=gridheight 20
+setting.level=gridwidth 15
 
 setting.keybinding=moveLeft A
 setting.keybinding=moveRight D

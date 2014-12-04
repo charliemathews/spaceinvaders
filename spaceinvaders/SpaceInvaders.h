@@ -32,7 +32,8 @@ private:
 	void editorDelete();
 
 	vector<vector<string>> settingsEditor;
-	vector<vector<string>> worldEditor;
+	vector<vector<string>> barrierEditor;
+	vector<vector<string>> alienEditor;
 
 	bool change_horizontal_direction ;
 	bool leftAlert ;

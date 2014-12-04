@@ -258,7 +258,8 @@ void SpaceInvaders::editorReadFile() {
 	cout << "LEVEL EDITOR" << endl;
 	Parser onPar = Parser("spaceinvaders.dat",'.', '=');
 	settingsEditor = onPar.linesMatching("setting");
-	worldEditor = onPar.linesMatching("world");
+	barrierEditor = onPar.linesContaining("barrier",2);
+	alienEditor = onPar.linesContaining("alien", 2);
 	int selection=0;
 	cout << endl <<"0. Escape"<<endl << "1. Edit grid" << endl << "2. Edit settings" << endl << endl << "Selection: ";
 	cin >> selection;
@@ -327,8 +328,6 @@ void SpaceInvaders::editorDrawGrid() {
 	pos.X=0;
 	pos.Y+=2;
 	SetConsoleCursorPosition(hConsole, pos);
-	for(vector<vector<string>>::iterator it1 = worldEditor.begin(); it1 != worldEditor.end(); ++it1) {
-	}
 	system("Pause");
 }
 
