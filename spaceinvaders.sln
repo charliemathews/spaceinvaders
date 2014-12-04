@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "spaceinvaders", "spaceinvaders\spaceinvaders.vcxproj", "{D079C9DE-854F-4A89-9B45-8D2F3420E1FE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "spaceinvaders", "spaceinvaders\spaceinvaders.vcxproj", "{1D6596BF-E67D-47D2-A653-FDA579911E44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D079C9DE-854F-4A89-9B45-8D2F3420E1FE}.Debug|Win32.ActiveCfg = Debug|Win32
-		{D079C9DE-854F-4A89-9B45-8D2F3420E1FE}.Debug|Win32.Build.0 = Debug|Win32
-		{D079C9DE-854F-4A89-9B45-8D2F3420E1FE}.Release|Win32.ActiveCfg = Release|Win32
-		{D079C9DE-854F-4A89-9B45-8D2F3420E1FE}.Release|Win32.Build.0 = Release|Win32
+		{1D6596BF-E67D-47D2-A653-FDA579911E44}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1D6596BF-E67D-47D2-A653-FDA579911E44}.Debug|Win32.Build.0 = Debug|Win32
+		{1D6596BF-E67D-47D2-A653-FDA579911E44}.Release|Win32.ActiveCfg = Release|Win32
+		{1D6596BF-E67D-47D2-A653-FDA579911E44}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
