@@ -3,121 +3,49 @@
 */
 
 #include <sstream>
-using std::stringstream ;
 #include <vector>
-using std::vector ;
+using namespace std ;
 
 #include "Settings.h"
 
 Settings::Settings()
 {
-	// settings_map.push_back(singleSetting());
+	// default settings
 	settings_map.push_back(singleSetting("keyBinding","moveLeft","A"));
 	settings_map.push_back(singleSetting("keyBinding","moveRight","D"));
 	settings_map.push_back(singleSetting("keyBinding","shoot"," "));
 }
 
-/*
-Settings::Settings(string config)
-{
-	configFile = config ;
-	fin.open(configFile);
 
-	char test;
-	bool done = false;
-	while(!fin.eof())
+Settings::Settings(vector<vector<string>> settings_input)
+{
+	for(auto &p : settings_input)
 	{
-		bool foundInput = false;
-		test = fin.get();
-		while(!foundInput)
+		if(p.size() == 3 && p[1] == "keybinding")
 		{
-			if(test == '/' || test == ' ' || test == '\n')
+			string action, key;
+			stringstream ss ;
+			ss << p[2] ;
+
+			string segment;
+			vector<string> seglist;
+
+			while(getline(ss, segment, ' '))
 			{
-				fin.putback(test);
-				bool newLine = false;
-				while(!newLine)
-				{
-					test = fin.get();
-					if(test == '\n')
-						newLine = true;
-				}
-				test = fin.get();
+			   seglist.push_back(segment);
 			}
-			else
+
+			if(seglist.size() == 2)
 			{
-				fin.putback(test);
-				foundInput = true;
-			}
-		}
-		bool endLeft = false;
-		string left;
-		while(!endLeft)
-		{
-			test = fin.get();
-			if(test == '.')
-				endLeft = true;
-			else
-				left+= test;
-		}
-		bool endMiddle = false;
-		string middle;
-		while(!endMiddle)
-		{
-			test = fin.get();
-			if(test == ' ' || test == '=')
-				endMiddle = true;
-			else
-				middle+= test;
-		}
-		bool atRight = false;
-		string right;
-		while(!atRight)
-		{
-			test = fin.get();
-			if((test != ' ' && test != '=') || test == '\'')
-				atRight = true;
-		}
-		if(test == '\'')
-		{
-			bool endRight = false;
-			while(!endRight)
-			{
-				test = fin.get();
-				if(test == '\'')
-					endRight = true;
-				else
-					right+= test;
+				// special cases
+				if(seglist[1] == "space") seglist[1] = " " ;
+
+				settings_map.push_back(singleSetting("keyBinding", seglist[0], seglist[1]));
 			}
 		}
-		else
-		{
-			fin.putback(test);
-			bool endRight = false;
-			while(!endRight)
-			{
-				test = fin.get();
-				if(test == ' ' || test == '\'' || test == '/' || test == '\n')
-					endRight = true;
-				else
-					right+= test;
-			}
-		}
-		fin.putback(test);
-		bool endLine = false;
-		while(!endLine)
-		{
-			test = fin.get();
-			if(test == '\n')
-				endLine = true;
-		}
-		singleSetting input;
-		input.type = left;
-		input.name = middle;
-		input.value = right;
-		settings_map.push_back(input);
 	}
+	
 }
-*/
 
 vector<char> Settings::getKeyBindings()
 {

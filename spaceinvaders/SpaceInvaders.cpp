@@ -83,6 +83,7 @@ void SpaceInvaders::runGame(){
 		}
 		else if(gamestate == MENU)
 		{
+			system("cls") ;
 			cout << "MAIN MENU" << endl << endl ;
 			cout << "(1) Play Game" << endl ;
 			cout << "(2) Edit Level" << endl ;
@@ -93,25 +94,21 @@ void SpaceInvaders::runGame(){
 			int option ;
 			cin >> option ;
 
-			if(option == 1)
-			{
-				gamestate = PLAY ;
-			}
+			if(option == 1) gamestate = PLAY ;
 			else if(option == 2) gamestate = mode::EDIT ;
 			else if(option == 3) gamestate = mode::HIGHSCORES ;
 			else if(option == 4) gamestate = mode::QUIT ;
-			else
-			{
-				gamestate = mode::MENU ;
-			}
+			else gamestate = mode::MENU ;
 		} 
 		else if(gamestate == EDIT)
 		{
 			// level editor call here!
+			gamestate = mode::MENU ;
 		}
 		else if(gamestate == HIGHSCORES)
 		{
 			//output highscores, future todo
+			gamestate = mode::MENU ;
 		}
 		else if(gamestate == QUIT)
 		{
@@ -189,7 +186,7 @@ void SpaceInvaders::update() // game logic
 	for(int i = 0; i < gridWidth; ++i)
 	{
 		Entity* entity = world->getEntity(Coord(i,gridHeight-4)) ; // checking the row above barriers. if alien, kill game
-		if(entity != nullptr && entity->getIdent() == "alien") gamestate = QUIT ; //exit(0) ;
+		if(entity != nullptr && entity->getIdent() == "alien") gamestate = MENU ; //exit(0) ;
 	}
 
 }

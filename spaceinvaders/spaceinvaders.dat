@@ -2,9 +2,9 @@ setting.level=difficulty normal
 setting.level=gridheight 500
 setting.level=gridwidth 500
 
-setting.keybinding = left a
-setting.keybinding = right d
-setting.keybinding = shoot space
+setting.keybinding=moveLeft A
+setting.keybinding=moveRight D
+setting.keybinding=shoot space
 
 world.entity=barrier 1 17
 world.entity=barrier 4 17

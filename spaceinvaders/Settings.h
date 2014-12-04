@@ -19,7 +19,7 @@ class Settings
 
 public:
 	Settings();
-	//Settings(string f);
+	Settings(vector<vector<string>>);
 
 	void changeDifficulty() ;
 	string addHighScore() ;
