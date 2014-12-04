@@ -25,8 +25,12 @@ private:
 	direction lastDir ;
 	void setEnemiesDir(direction) ;
 
+	bool isAdd;
+	bool isDelete;
+
 	void editorReadFile();
 	void editorDrawGrid();
+	void editorGridMenu();
 	void editorDrawSettings();
 	void editorAdd();
 	void editorDelete();

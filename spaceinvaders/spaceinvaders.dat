@@ -29,3 +29,4 @@ world.entity=alien 9 8
 setting.keybinding=moveRight D
 setting.keybinding=shoot space
 setting.keybinding=moveLeft A
+world.entity=alien 12 1

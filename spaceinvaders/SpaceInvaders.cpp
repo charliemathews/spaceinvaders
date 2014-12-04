@@ -69,6 +69,8 @@ SpaceInvaders::SpaceInvaders(string config) : GridGame(config)
 
 	enemyMoveCount = 0 ;
 	gamestate = MENU ;
+	isAdd=false;
+	isDelete=false;
 }
 
 SpaceInvaders::~SpaceInvaders(){}
@@ -274,7 +276,7 @@ void SpaceInvaders::editorReadFile() {
 	cout << endl <<"0. Escape"<<endl << "1. Edit grid" << endl << "2. Edit settings" << endl << endl << "Selection: ";
 	cin >> selection;
 	do {
-		if (selection==0){}
+		if (selection==0) gamestate = MENU;
 		else if(selection==1) editorDrawGrid();
 		else if(selection==2) editorDrawSettings();
 		else {
@@ -338,126 +340,154 @@ void SpaceInvaders::editorDrawGrid() {
 	pos.X=0;
 	pos.Y+=2;
 	SetConsoleCursorPosition(hConsole, pos);
-	system("Pause");
+	vector<int> barrierX;
+	vector<int> barrierY;
+	for(int i=0; i<barrierEditor.size(); i++) {
+		vector<string> temp;
+		char str[500];
+		strcpy(str, barrierEditor.at(i).at(2).c_str());
+		char * ptr = strtok(str, " ");
+		while(ptr !=nullptr){
+			temp.push_back(std::string(ptr));
+			ptr = strtok(NULL, " ");
+		}
+		barrierX.push_back(stoi(temp.at(1)));
+		barrierY.push_back(stoi(temp.at(2)));
+	}
+	for(int i=0; i<barrierX.size(); i++) {
+		pos.X=2*(barrierX.at(i))+2;
+		pos.Y=(barrierY.at(i))+2;
+		SetConsoleCursorPosition(hConsole, pos);
+		cout << "=";
+	}
+	vector<int> alienX;
+	vector<int> alienY;
+	for(int i=0; i<alienEditor.size(); i++) {
+		vector<string> temp;
+		char str[500];
+		strcpy(str, alienEditor.at(i).at(2).c_str());
+		char * ptr = strtok(str, " ");
+		while(ptr !=nullptr){
+			temp.push_back(std::string(ptr));
+			ptr = strtok(NULL, " ");
+		}
+		alienX.push_back(stoi(temp.at(1)));
+		alienY.push_back(stoi(temp.at(2)));
+	}
+	for(int i=0; i<alienX.size(); i++) {
+		pos.X=2*(alienX.at(i))+2;
+		pos.Y=(alienY.at(i))+2;
+		SetConsoleCursorPosition(hConsole, pos);
+		cout << "V";
+	}
+	pos.X=0;
+	pos.Y=gameHeight+2;
+	SetConsoleCursorPosition(hConsole, pos);
+	if(isAdd) editorAdd();
+	else if(isDelete) editorDelete();
+	else editorGridMenu();
+	//system("Pause");
+}
+
+void SpaceInvaders::editorGridMenu() {
+	isAdd=false;
+	isDelete=false;
+	int selection=0;
+	cout << "Grid editor:" << endl << "0. Escape" << endl << "1. Add" << endl << "2. Delete" << endl;
+	cout << endl << "Selection: ";
+	cin >> selection;
+	do {
+		if(selection==0) {
+			isAdd=false;
+			isDelete=false;
+			editorReadFile();
+		}
+		else if(selection==1) {
+			isAdd=true;
+			isDelete=false;
+			editorDrawGrid();
+		}
+		else if(selection==2) {
+			isAdd=false;
+			isDelete=true;
+			editorDrawGrid();
+		}
+		else {
+			cout << "Please enter valid selection (0/1/2): ";
+			cin >> selection;
+		}
+	}while(selection<0||selection>2);
+}
+
+void SpaceInvaders::editorAdd() {
+	isAdd=false;
+	isDelete=false;
+	Parser onPar = Parser("spaceinvaders.dat",'.', '=');
+	cout << "V = alien, = = barrier";
+	string addEntity;
+	cout << endl << "Add (type x y): ";
+	std::getline(cin, addEntity);
+	std::getline(cin, addEntity);
+	vector<string> temp;
+	char str[500];
+	strcpy(str, addEntity.c_str());
+	char * ptr = strtok(str, " ");
+	while(ptr !=nullptr){
+		temp.push_back(std::string(ptr));
+		ptr = strtok(NULL, " ");
+	}
+	string temp2=temp.at(0)+" "+temp.at(1)+" "+temp.at(2);
+	onPar.deleteMatching(temp2, 2);
+	addEntity="world.entity="+temp2;
+	onPar.add(addEntity);
+	onPar.saveToFile();
+	editorReadFile();
+}
+
+void SpaceInvaders::editorDelete() {
+	isAdd=false;
+	isDelete=false;
+	Parser onPar = Parser("spaceinvaders.dat",'.', '=');
+	cout << "V = alien, = = barrier";
+	string deleteEntity;
+	cout << endl << "Delete (type x y): ";
+	std::getline(cin, deleteEntity);
+	std::getline(cin, deleteEntity);
+	vector<string> temp;
+	char str[500];
+	strcpy(str, deleteEntity.c_str());
+	char * ptr = strtok(str, " ");
+	while(ptr !=nullptr){
+		temp.push_back(std::string(ptr));
+		ptr = strtok(NULL, " ");
+	}
+	string temp2=temp.at(0)+" "+temp.at(1)+" "+temp.at(2);
+	onPar.deleteMatching(temp2, 2);
+	deleteEntity="world.entity="+temp2;
+	onPar.saveToFile();
+	editorReadFile();
 }
 
 void SpaceInvaders::editorDrawSettings() {
 	Parser onPar = Parser("spaceinvaders.dat",'.', '=');
 	cout << endl << "Settings:" << endl;
 	for(vector<vector<string>>::iterator it1 = settingsEditor.begin(); it1 != settingsEditor.end(); ++it1)
-		cout << " " << (*it1).at(2) << endl;
-	cout << endl << "0. Escape"<< endl;
-	cout << "1. Change difficulty" << endl;
-	cout << "2. Change grid height" << endl;
-	cout << "3. Change grid width" << endl;
-	cout << "4. Change right keymap" << endl;
-	cout << "5. Change left keymap" << endl;
-	cout << "6. Change shoot keymap" << endl;
-	int selection=0;
-	cout << endl << "Selection: ";
-	cin >> selection;
-	do {
-		if (selection ==0){
-			editorReadFile();
-		}
-		else if(selection==1) {
-			char diff;
-			cout << endl << "Enter new difficulty (e/n/h): ";
-			cin >> diff;
-			do {
-				if(diff=='e') {
-					onPar.deleteContaining("difficulty", 2);
-					onPar.add("setting.level=difficulty easy");
-					onPar.saveToFile();
-					editorReadFile();
-				}
-				else if(diff=='n') {
-					onPar.deleteContaining("difficulty", 2);
-					onPar.add("setting.level=difficulty normal");
-					onPar.saveToFile();
-					editorReadFile();
-				}
-				else if(diff=='h') {
-					onPar.deleteContaining("difficulty", 2);
-					onPar.add("setting.level=difficulty hard");
-					onPar.saveToFile();
-					editorReadFile();
-				}
-				else {
-					cout << "Please enter valid difficulty (e/n/h): ";
-					cin >> diff;
-				}
-			}while(diff!='e'||diff!='n'||diff!='h');
-		}
-		else if(selection==2) {
-			int height=0;
-			cout << endl << "Enter a new height (integer): ";
-			cin >> height;
-			cin.clear();
-			cin.ignore();
-			stringstream ss;
-			ss << height;
-			string heightStr = ss.str();
-			onPar.deleteContaining("gridheight", 2);
-			onPar.add("setting.level=gridheight "+heightStr);
-			onPar.saveToFile();
-			editorReadFile();
-		}
-		else if(selection==3) {
-			int width=0;
-			cout << endl << "Enter a new width (integer): ";
-			cin >> width;
-			cin.clear();
-			cin.ignore();
-			stringstream ss;
-			ss << width;
-			string widthStr = ss.str();
-			onPar.deleteContaining("getwidth", 2);
-			onPar.add("setting.level=gridwidth "+widthStr);
-			onPar.saveToFile();
-			editorReadFile();
-		}
-		else if(selection==4) {
-			string left;
-			cout << endl << "Enter a new key to move left: ";
-			cin >> left;
-			string left1Char = left.substr(0, 1);
-			onPar.deleteContaining("moveLeft", 2);
-			onPar.add("setting.keybinding=moveLeft "+left1Char);
-			onPar.saveToFile();
-			editorReadFile();
-		}
-		else if(selection==5) {
-			string right;
-			cout << endl << "Enter a new key to move right: ";
-			cin >> right;
-			string right1Char = right.substr(0, 1);
-			onPar.deleteContaining("moveRight", 2);
-			onPar.add("setting.keybinding=moveRight "+right1Char);
-			onPar.saveToFile();
-			editorReadFile();
-		}
-		else if(selection==6) {
-			string shoot;
-			cout << endl << "Enter a new key to shoot: ";
-			cin >> shoot;
-			if(shoot=="space") {
-				onPar.deleteContaining("shoot", 2);
-				onPar.add("setting.keybinding=shoot "+shoot);
-				onPar.saveToFile();
-				editorReadFile();
-			}
-			else {
-				string shoot1Char = shoot.substr(0, 1);
-				onPar.deleteContaining("shoot", 2);
-				onPar.add("setting.keybinding=shoot "+shoot1Char);
-				onPar.saveToFile();
-				editorReadFile();
-			}
-		}
-		else {
-			cout << "Make a valid selection: ";
-			cin >> selection;
-		}
-	}while((selection<0 || selection>6));
+		cout << (*it1).at(1) << " " << (*it1).at(2) << endl;
+	string newSetting;
+	cout << endl << "Enter new setting: ";
+	std::getline(cin, newSetting);
+	std::getline(cin, newSetting);
+	vector<string> temp;
+	char str[500];
+	strcpy(str, newSetting.c_str());
+	char * ptr = strtok(str, " ");
+	while(ptr !=nullptr){
+		temp.push_back(std::string(ptr));
+		ptr = strtok(NULL, " ");
+	}
+	onPar.deleteContaining(temp.at(1), 2);
+	newSetting="setting."+temp.at(0)+"="+temp.at(1)+" "+temp.at(2);
+	onPar.add(newSetting);
+	onPar.saveToFile();
+	editorReadFile();
 }
