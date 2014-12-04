@@ -99,8 +99,8 @@ void SpaceInvaders::runGame(){
 			cout << "MAIN MENU" << endl << endl ;
 			cout << "(1) Play Game" << endl ;
 			cout << "(2) Edit Level" << endl ;
-			cout << "(3) Highscores" << endl ;
-			cout << "(4) Quit" << endl << endl ;
+			//cout << "(3) Highscores" << endl ;
+			cout << "(0) Quit" << endl << endl ;
 
 			cout << "Choose an option:" ;
 			int option ;
@@ -108,8 +108,8 @@ void SpaceInvaders::runGame(){
 
 			if(option == 1) gamestate = PLAY ;
 			else if(option == 2) gamestate = mode::EDIT ;
-			else if(option == 3) gamestate = mode::HIGHSCORES ;
-			else if(option == 4) gamestate = mode::QUIT ;
+			//else if(option == 3) gamestate = mode::HIGHSCORES ;
+			else if(option == 9) gamestate = mode::QUIT ;
 			else gamestate = mode::MENU ;
 		} 
 
